@@ -1,6 +1,12 @@
 const express = require("express");
 const app = express();
+const mongoose = require("mongoose");
 require("dotenv").config();
+
+
+
+const port=process.env.PORT;
+
 
 app.use((req,res,next)=>{
     console.log(req.method);
@@ -12,8 +18,13 @@ app.get("/",(req,res)=>{
 });
 
 
+mongoose.connect(process.env.DB_URI)
+    .then(()=>{
+        app.listen(port,()=>{
+            console.log("DB Connected Successfully And Listening To Port "+port);
+        });
+    }).catch((error)=>{
+        console.log(error);
+    })
 
-const port=process.env.PORT;
-app.listen(port,()=>{
-    console.log("Listening To Port "+port);
-});
+
