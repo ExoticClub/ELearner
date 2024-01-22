@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const {createMark}=require("../Controllers/MarkController");
+const {createMark,getMark}=require("../Controllers/MarkController");
 
 router.post("/",createMark);
+router.get("/",getMark);
 
 module.exports=router;

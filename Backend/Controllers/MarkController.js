@@ -15,4 +15,15 @@ const createMark = async(req,res)=>{
     }
 }
 
-module.exports={createMark}
+//   READ ALL
+
+const getMark = async(req,res)=>{
+    try{
+        const Mark=await MarkModel.find({});
+        res.status(200).json(Mark)
+    }catch(e){
+        res.status(400).json({error:e.message})
+    }
+}
+
+module.exports={createMark,getMark}
