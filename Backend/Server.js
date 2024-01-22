@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-
+const markRoutes = require("./Routes/MarkRoutes.js");
 
 const port=process.env.PORT;
 
@@ -12,6 +12,8 @@ app.use((req,res,next)=>{
     console.log(req.method);
     next();
 });
+
+app.use(express.json());
 
 app.get("/",(req,res)=>{
     res.send("Hello Worlds");
@@ -27,4 +29,4 @@ mongoose.connect(process.env.DB_URI)
         console.log(error);
     })
 
-
+app.use("/api/marks",markRoutes);

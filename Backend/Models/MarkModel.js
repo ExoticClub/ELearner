@@ -11,7 +11,7 @@ const MarkSchema = new Schema(
             type:String,
             require:true
         },
-        Mark:{
+        MarkGet:{
             type:Number,
             require:true
         }
