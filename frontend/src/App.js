@@ -7,6 +7,7 @@ import Learn from "./pages/Learn";
 import Practice from "./pages/Practice";
 import WebPractice from "./pages/WebPractice";
 import FormPractice from "./pages/FormPractice";
+import LoginPage from "./pages/Login";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            <Route index element={<Home />} />
+            <Route index element={<LoginPage />} />
             <Route path="Home" element={<Home />} />
             <Route path="Learn" element={<Learn />} />
             <Route path="Practice/*">
