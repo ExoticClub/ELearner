@@ -104,12 +104,11 @@ function WebPractice() {
 
   const LatestData=WebData.slice(-3);
   
-  const [TId, setTId] = useState({"Id":"404","Title":"No Data","Question":["No Data"],"Options":[["none","none"]],"Answer":["none"],"Author":"None","updatedAt":"404T565"});
-
+  const [TId, setTId] = useState(0);
   function chgTest(x){
     //document.querySelector("Temp").test="{x}";
     if(rept(x)){
-    setTId(x);
+    setTId(WebData.indexOf(x));
     document.querySelector(".bn").style="display:none;";
     document.querySelector(".MoreWeb2").style="display:none;";
     document.querySelector(".testMod").style="display:flex;";}

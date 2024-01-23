@@ -6,6 +6,8 @@ import "../style/PracticeModule.css";
 
 function PracticeModule({ TId, logInfo }) {
   console.log(TId)
+
+  
     let datas=[
         [
           "953622244024",
@@ -198,6 +200,8 @@ function PracticeModule({ TId, logInfo }) {
    let ReqData=[{"Id":"404","Title":"No Data","Question":["No Data"],"Options":[["none"]],"Answer":["none"],"Author":"None","updatedAt":"404T565"},{"Id":"404","Title":"No Data","Question":["No Data"],"Options":[["none"]],"Answer":["none"],"Author":"None","updatedAt":"404T565"},{"Id":"404","Title":"No Data","Question":["No Data"],"Options":[["none"]],"Answer":["none"],"Author":"None","updatedAt":"404T565"}]
 
    const [WebData, setWebData] = useState(ReqData);
+   const [QData, setQData] = useState(WebData[0]);
+   const [questionIndex, setQuestionIndex] = useState(0);
  
    useEffect(() => {
      const apiUrl = 'http://localhost:9999/api/web';
@@ -211,6 +215,8 @@ function PracticeModule({ TId, logInfo }) {
        })
        .then(resultData => {
          setWebData(resultData);
+         setQData(resultData[TId]);
+         setQuestionIndex(resultData[TId].Question.length-1)
        })
        .catch(error => {
          console.error('Error fetching data:', error);
@@ -219,15 +225,41 @@ function PracticeModule({ TId, logInfo }) {
  
    console.log(WebData);
 
-  const [mark, setMark] = useState(0);
-  const [QData, setQData] = useState(QDatas);
-  const [selectedOption, setSelectedOption] = useState('');
-  const [questionIndex, setQuestionIndex] = useState(TId.Question.length-1);
-  console.log(questionIndex);
+   console.log(QData);
 
-  useEffect(async () => {
-    await setQuestionIndex(TId.Question.length-1)
-  }, []);
+   // API POST
+
+   const [Out, setOut] = useState({});
+
+   const handlePostRequest = async () => {
+    try {
+      const response = await fetch('http://localhost:9999/api/marks', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+        body: JSON.stringify(Out),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const responseData = await response.json();
+      // Handle the response data as needed
+      console.log('Response data:', responseData);
+    } catch (error) {
+      console.error('Error during POST request:', error);
+    }
+  };
+
+  // _________
+
+  const [mark, setMark] = useState(0);
+  const [selectedOption, setSelectedOption] = useState('');
+  
+  console.log(questionIndex);
 
   const handleOptionChange = (e) => {
     e.target.style.color = 'red';
@@ -236,7 +268,7 @@ function PracticeModule({ TId, logInfo }) {
 
   const optionVerification = () => {
     if (selectedOption !== '') {
-      if (selectedOption === TId.Answer[questionIndex]) {
+      if (selectedOption === QData.Answer[questionIndex]) {
         setMark(mark + 1);
       }
     }
@@ -247,7 +279,8 @@ function PracticeModule({ TId, logInfo }) {
       }
     } else {
       document.querySelector('#butt').disabled = true;
-      
+      setOut({"RegNo":"999","TestId":QData.Id,"MarkGet":mark})
+      handlePostRequest();
       document.querySelector('.mark').style.display = 'flex';
       document.querySelector('.test-cont').style.display = 'none';
     }
@@ -257,11 +290,11 @@ function PracticeModule({ TId, logInfo }) {
     <div className='iio'>
       <div className='dbody'>
         <form className='test-cont'>
-          <p className='tttoo'>{TId.Title}</p>
+          <p className='tttoo'>{QData.Title}</p>
           <div className='qa'>
-            <p className='q'>{TId.Question[questionIndex]}</p>
+            <p className='q'>{QData.Question[questionIndex]}</p>
             <div className='a'>
-              {TId.Options[questionIndex].map((option) => (
+              {QData.Options[questionIndex].map((option) => (
                 <label key={option} className='opt'>
                   <input
                     type='radio'
@@ -281,9 +314,9 @@ function PracticeModule({ TId, logInfo }) {
         </form>
       </div>
       <form className='mark'>
-        <p className='uii'>{TId.Title}</p>
+        <p className='uii'>{QData.Title}</p>
         <p>Mark: {mark}</p>
-        <button type='submit' id='butt'>
+        <button type='button' id='butt'>
           Go Back
         </button>
       </form>
