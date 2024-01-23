@@ -3,6 +3,7 @@ import Card1 from "../assets/landscape-1.png";
 import Card2 from "../assets/landscape-2.png";
 import { useGlobal } from '../components/GlobalContext';
 import "../style/Practice.css";
+import FormPractice from './FormPractice';
 
 
 
@@ -63,7 +64,7 @@ function Practice() {
       </div>
       </div>
         <div className='FormT'>
-          {/* <FormTest/> */}
+          <FormPractice/>
       </div>
       <div className='WebT'>
           {/* <WebTest logInfo={ios}/> */}

@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState } from 'react';
 const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
-  const [globalVariable, setGlobalVariable] = useState('0$Name');
+  const [globalVariable, setGlobalVariable] = useState('404$LOGIN');
 
   return (
     <GlobalContext.Provider value={{ globalVariable, setGlobalVariable }}>
