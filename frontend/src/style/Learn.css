@@ -79,11 +79,11 @@
 }
 
 .containerVid .video-list-container .list{
-   background-color: #fff;
+   background-color: grey;
 }
 
 .containerVid .video-list-container .list.active .list-title{
-   color:#000000;
+   color:white;
    font-weight: 600;
 }
 

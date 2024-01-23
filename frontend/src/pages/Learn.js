@@ -27,8 +27,10 @@ function Video() {
     
     for(let i=0;i<VidD.length;i++){
       document.querySelector("#kk"+i).style="background-color:grey;";
+      document.querySelector("#kk"+i+" h3").style="color:white;";
     }
-    document.querySelector("#kk"+id).style="background-color:black;";
+    document.querySelector("#kk"+id).style="background-color:white;";
+    document.querySelector("#kk"+id+" h3").style="color:black;";
   }
 
   return (
@@ -45,6 +47,9 @@ function Video() {
             <a href='/Practice'>Practice</a>
             <a href='/Info'>Info</a>
           </div>
+        </div>
+        <div className='Foot'>
+          <p>This Website Was Created By <a>Team Exotic</a></p>
         </div>
       </div>
 
@@ -69,6 +74,7 @@ function Video() {
     </div>
 
     </div>
+    
 
 
   </>
