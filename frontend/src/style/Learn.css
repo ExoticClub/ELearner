@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+*{
+   font-family: 'Poppins', sans-serif;
+   margin:0; padding:0;
+   outline: none; border:none;
+   text-decoration: none;
+}
+
+.containerVid{
+   max-width: 1200px;
+   margin:100px auto;
+   display: flex;
+   flex-wrap: wrap;
+   align-items: flex-start;
+   gap:20px;
+   position:fixed;
+   top:0;
+   left:0;
+   right:0;
+}
+
+.containerVid .main-video-container{
+   flex:1 1 700px;
+   border-radius: 5px;
+   box-shadow: 0 5px 15px rgba(0,0,0,.1);
+   background-color: #c2c2c2;
+   padding:15px;
+}
+
+.containerVid .main-video-container .main-video{
+   margin-bottom: 7px;
+   border-radius: 5px;
+   width: 100%;
+}
+
+.containerVid .main-video-container .main-vid-title{
+   font-size: 20px;
+   color:#444;
+}
+
+.containerVid .video-list-container{
+   flex:1 1 350px;
+   height: 420px;
+   overflow-y: scroll;
+   border-radius: 5px;
+   box-shadow: 0 5px 15px rgba(0,0,0,.1);
+   background-color: #c2c2c2;
+   padding:15px;
+}
+
+.containerVid .video-list-container::-webkit-scrollbar{
+   width: 10px;
+}
+
+.containerVid .video-list-container::-webkit-scrollbar-track{
+   background-color: #c2c2c2;
+   border-radius: 5px;
+}
+
+.containerVid .video-list-container::-webkit-scrollbar-thumb{
+   background-color: #444;
+   border-radius: 5px;
+}
+
+.containerVid .video-list-container .list{
+   display: flex;
+   align-items: center;
+   gap:15px;
+   padding:10px;
+   background-color: #eee;
+   cursor: pointer;
+   border-radius: 5px;
+   margin-bottom: 10px;
+}
+
+.containerVid .video-list-container .list:last-child{
+   margin-bottom: 0;
+}
+
+.containerVid .video-list-container .list{
+   background-color: #fff;
+}
+
+.containerVid .video-list-container .list.active .list-title{
+   color:#000000;
+   font-weight: 600;
+}
+
+.containerVid .video-list-container .list .list-video{
+   width: 100px;
+   border-radius: 5px;
+}
+
+.containerVid .video-list-container .list .list-title{
+   font-size: 17px;
+   color:#444;
+}
+
+.VidPlay{
+   width:100%;
+   height:60vh;
+}

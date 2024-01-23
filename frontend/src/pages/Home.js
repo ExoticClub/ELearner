@@ -13,10 +13,10 @@ function Home() {
             <p>ENGLISH</p>
           </div>
           <div className='lo'>
-            <a href='/'>Home</a>
-            <a href='/learn'>Learn</a>
-            <a href='/practice'>Practice</a>
-            <a href='/info'>Info</a>
+            <a href='/Home'>Home</a>
+            <a href='/Learn'>Learn</a>
+            <a href='/Practice'>Practice</a>
+            <a href='/Info'>Info</a>
           </div>
         </div>
 
@@ -34,7 +34,7 @@ function Home() {
           </div>
         </div>
         <div className='Foot'>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, deserunt.</p>
+          <p>This Website Was Created By <a>Team Exotic</a></p>
         </div>
 
       </div>
