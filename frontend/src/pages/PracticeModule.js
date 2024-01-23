@@ -103,7 +103,7 @@ function PracticeModule({ TId, logInfo }) {
     setStep(1);
   }
     else if(Step==1){
-      console.log("OP");
+      document.querySelector(".JJoy").type="submit";
     }
 
   }

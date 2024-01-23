@@ -312,6 +312,16 @@ h2 {
 }
 
 .no{
-  padding-top: 50px;
+  position: fixed;
+  top:30%;
+  left:35%;
   color:black;
+  background-color: #c2c2c2;
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width:30%;
+  height:200px;
+  border-radius: 10px;
 }

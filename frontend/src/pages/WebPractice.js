@@ -198,6 +198,7 @@ function WebPractice() {
         </div>
         <div className='no'>
           <p>You Already Completed</p>
+          <a className='glow-button' href='/practice/webpractice'>Go Back</a>
         </div>
         
     </>
