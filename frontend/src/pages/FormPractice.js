@@ -2,35 +2,39 @@ import React, { useState,useEffect } from 'react';
 import "../style/WebPractice.css";
 import "../style/Practice.css";
 
-function FormPractice() {
-    let FData={
-        "Title": [
-          "Test1",
-          "Test2"
-        ],
-        "Link": [
-          "https://www.youtube.com/embed/C_nLt9l74ZY?si=Drt-SxASD73It5jY",
-          "https://www.youtube.com/embed/C_nLt9l74ZY?si=Drt-SxASD73It5jY"
-        ],
-        "Id": [
-          "001",
-          "002"
-        ],
-        "Date":[
-            "08/03/2024",
-            "02/01/2024"
-        ]
-      };
-  let details=FData.Title;
+function FormPractice(){
+
+  // API FETCH 
+
+  const [FormData, setFormData] = useState([{"Title":"No Data Found","Link":"/404","Id":404,"updatedAt":"404T500"},{"Title":"No Data Found","Link":"/404","Id":404,"updatedAt":"404T500"},{"Title":"No Data Found","Link":"/404","Id":404,"updatedAt":"404T500"}]);
+
+  useEffect(() => {
+    const apiUrl = 'http://localhost:9999/api/forms';
+  
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(resultData => {
+        setFormData(resultData);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  console.log(FormData);
 
   function opnMore(){
     document.querySelector(".MoreWeb1").style="display:flex;";
     document.querySelector(".bh").style="display:none;";
   }
 
-  const Latest=FData.Title.slice(-3);
-  const LateDate=FData.Date.slice(-3);
-  const LateLink=FData.Link.slice(-3);
+  const Latest=FormData.slice(-3);
+  console.log(Latest);
 
     
 
@@ -47,51 +51,51 @@ function FormPractice() {
                 <div className="ag-format-container">
                   <div className="ag-courses_box">
                     <div className="ag-courses_item">
-                      <a href={LateLink[2]||"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} className="ag-courses-item_link">
+                      <a href={Latest[2].Link||"/404"} className="ag-courses-item_link">
                         <div className="ag-courses-item_bg"></div>
 
                         <div className="ag-courses-item_title">
-                          {Latest[2]||"No Data Found"}
+                          {Latest[2].Title||"No Data Found"}
                         </div>
 
                         <div className="ag-courses-item_date-box">
                           Start:
                           <span className="ag-courses-item_date">
-                            {LateDate[2]||"No Data Found"}
+                            {Latest[2].updatedAt.split("T")[0]||"No Data Found"}
                           </span>
                         </div>
                       </a>
                     </div>
 
                     <div className="ag-courses_item">
-                      <a href={LateLink[1]||"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} className="ag-courses-item_link">
+                      <a href={Latest[1].Link||"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} className="ag-courses-item_link">
                         <div className="ag-courses-item_bg"></div>
 
                         <div className="ag-courses-item_title">
-                          {Latest[1]||"No Data Found"}
+                          {Latest[1].Title||"No Data Found"}
                         </div>
 
                         <div className="ag-courses-item_date-box">
                           Start:
                           <span className="ag-courses-item_date">
-                          {LateDate[1]||"No Data Found"}
+                          {Latest[1].updatedAt.split("T")[0]||"No Data Found"}
                           </span>
                         </div>
                       </a>
                     </div>
 
                     <div className="ag-courses_item">
-                      <a href={LateLink[0]||"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} className="ag-courses-item_link">
+                      <a href={Latest[0].Link||"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} className="ag-courses-item_link">
                         <div className="ag-courses-item_bg"></div>
 
                         <div className="ag-courses-item_title">
-                          {Latest[0]||"No Data Found"}
+                          {Latest[0].Title||"No Data Found"}
                         </div>
 
                         <div className="ag-courses-item_date-box">
                           Start:
                           <span className="ag-courses-item_date">
-                          {LateDate[0]||"No Data Found"}
+                          {Latest[0].updatedAt.split("T")[0]||"No Data Found"}
                           </span>
                         </div>
                       </a>
@@ -111,12 +115,12 @@ function FormPractice() {
               <div className="col col-2">Title</div>
               <div className="col col-3">Date</div>
             </li>
-            {details.map((data,id) => (
-              <a href={FData.Link[id]}>
+            {FormData.map((data,id) => (
+              <a href={data.Link}>
               <li className="table-row">
-                <div className="col col-1" >{FData.Id[id]}</div>
-                <div className="col col-2" >{data}</div>
-                <div className="col col-3" >{FData.Date[id]}</div>
+                <div className="col col-1" >{data.Id}</div>
+                <div className="col col-2" >{data.Title}</div>
+                <div className="col col-3" >{data.updatedAt.split("T")[0]}</div>
               </li>
               </a>
             ))}

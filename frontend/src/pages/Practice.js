@@ -27,7 +27,7 @@ function Practice() {
         document.querySelector('.WebT').style="display:flex;";
         document.querySelector('.TestHome').style="display:none;";
       }
-    
+    console.log(ios)
      
     return (
     <>
@@ -68,7 +68,7 @@ function Practice() {
           <FormPractice/>
       </div>
       <div className='WebT'>
-          <WebPractice logInfo={ios}/>
+          <WebPractice/>
       </div>
         
     </>

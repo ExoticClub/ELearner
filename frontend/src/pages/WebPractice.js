@@ -2,9 +2,15 @@ import '../style/Practice.css';
 import "../style/WebPractice.css";
 import React, { useState,useEffect } from 'react';
 import PracticeModule from './PracticeModule';
+import { useGlobal } from '../components/GlobalContext';
 
 
-function WebPractice(logInfo) {
+function WebPractice() {
+
+  let logInfo;
+  const { globalVariable, setGlobalVariable } = useGlobal();
+   let io=globalVariable;
+   logInfo=io.split("$");
 
     let QData={
         "id": [
