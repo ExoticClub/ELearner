@@ -6,195 +6,6 @@ import "../style/PracticeModule.css";
 
 function PracticeModule({ TId, logInfo }) {
   console.log(TId)
-
-  
-    let datas=[
-        [
-          "953622244024",
-          "001",
-          3
-        ],
-        [
-          "953622244024",
-          "001",
-          3
-        ],
-        [
-          "404",
-          "001",
-          3
-        ],
-        [
-          "404",
-          "006",
-          3
-        ],
-        [
-          "404",
-          "004",
-          3
-        ],
-        [],
-        [
-          "404",
-          "003",
-          3
-        ],
-        [
-          "404",
-          "003",
-          3
-        ],
-        [
-          "404",
-          "003",
-          3
-        ]
-      ];
-
-      let QDatas={
-        "id": [
-          "001",
-          "002",
-          "003",
-          "004"
-        ],
-        "title": [
-          "About Sun",
-          "About Air",
-          "About You",
-          "Economy"
-        ],
-        "question": [
-          [
-            "What is shape of sun ?",
-            "what is color of sun ?",
-            "where is sun ?"
-          ],
-          [
-            "Q1",
-            "Q2",
-            "Q3"
-          ],
-          [
-            "Q1",
-            "Q2",
-            "Q3"
-          ],
-          [
-            "What Is Price Of Puffs ?",
-            "What Is Price Of Cone IceCream ?",
-            "Do You Like India ?"
-          ]
-        ],
-        "options": [
-          [
-            [
-              "Square",
-              "Reactangle",
-              "Triangle",
-              "Sphere"
-            ],
-            [
-              "Blue",
-              "Red"
-            ],
-            [
-              "Solar System",
-              "Chennai",
-              "america",
-              "Madurai"
-            ]
-          ],
-          [
-            [
-              "O1",
-              "O2",
-              "O3"
-            ],
-            [
-              "O1",
-              "O2",
-              "O3"
-            ],
-            [
-              "O1",
-              "O2",
-              "O3"
-            ]
-          ],
-          [
-            [
-              "O1",
-              "O2",
-              "O3"
-            ],
-            [
-              "O1",
-              "O2",
-              "O3"
-            ],
-            [
-              "O1",
-              "O2",
-              "O3"
-            ]
-          ],
-          [
-            [
-              "Rs15",
-              "Rs20",
-              "Rs10",
-              "Free"
-            ],
-            [
-              "Rs20",
-              "Rs35",
-              "Rs30",
-              "Free"
-            ],
-            [
-              "Yes",
-              "No"
-            ]
-          ]
-        ],
-        "answer": [
-          [
-            "Sphere",
-            "Red",
-            "Solar System"
-          ],
-          [
-            "O1",
-            "O2",
-            "O3"
-          ],
-          [
-            "O1",
-            "O2",
-            "O3"
-          ],
-          [
-            "Rs15",
-            "Rs35",
-            "Yes"
-          ]
-        ],
-        "Date": [
-          "08/06/2024",
-          "01/01/2024",
-          "26/12/2024",
-          "01/01/2024"
-        ],
-        "Author": [
-          "Luffy",
-          "Luna",
-          "Zoro",
-          "Williamson"
-        ]
-      }
-
    // API Fetch
 
    let ReqData=[{"Id":"404","Title":"No Data","Question":["No Data"],"Options":[["none"]],"Answer":["none"],"Author":"None","updatedAt":"404T565"},{"Id":"404","Title":"No Data","Question":["No Data"],"Options":[["none"]],"Answer":["none"],"Author":"None","updatedAt":"404T565"},{"Id":"404","Title":"No Data","Question":["No Data"],"Options":[["none"]],"Answer":["none"],"Author":"None","updatedAt":"404T565"}]
@@ -228,18 +39,19 @@ function PracticeModule({ TId, logInfo }) {
    console.log(QData);
 
    // API POST
+   const [mark, setMark] = useState(0);
 
-   const [Out, setOut] = useState({});
-
-   const handlePostRequest = async () => {
+   const handlePostRequest = async (IO) => {
+    
     try {
+      
       const response = await fetch('http://localhost:9999/api/marks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           // Add any other headers if needed
         },
-        body: JSON.stringify(Out),
+        body: JSON.stringify(IO),
       });
 
       if (!response.ok) {
@@ -255,8 +67,7 @@ function PracticeModule({ TId, logInfo }) {
   };
 
   // _________
-
-  const [mark, setMark] = useState(0);
+ 
   const [selectedOption, setSelectedOption] = useState('');
   
   console.log(questionIndex);
@@ -279,12 +90,23 @@ function PracticeModule({ TId, logInfo }) {
       }
     } else {
       document.querySelector('#butt').disabled = true;
-      setOut({"RegNo":"999","TestId":QData.Id,"MarkGet":mark})
-      handlePostRequest();
       document.querySelector('.mark').style.display = 'flex';
       document.querySelector('.test-cont').style.display = 'none';
     }
   };
+  const [Step,setStep]=useState(0);
+  function SubmitHand(){
+    if(Step==0){
+    handlePostRequest({"RegNo":logInfo[0],"TestId":QData.Id,"MarkGet":mark});
+    document.querySelector(".JJoy").innerHTML="Go Back";
+    document.querySelector(".marktsb").style="display:flex;";
+    setStep(1);
+  }
+    else if(Step==1){
+      console.log("OP");
+    }
+
+  }
 
   return (
     <div className='iio'>
@@ -315,9 +137,9 @@ function PracticeModule({ TId, logInfo }) {
       </div>
       <form className='mark'>
         <p className='uii'>{QData.Title}</p>
-        <p>Mark: {mark}</p>
-        <button type='button' id='butt'>
-          Go Back
+        <p className='marktsb'>Mark: {mark}</p>
+        <button type='button' id='butt' className="JJoy" onClick={SubmitHand}>
+          Submit
         </button>
       </form>
     </div>

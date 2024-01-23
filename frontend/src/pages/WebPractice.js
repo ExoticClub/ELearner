@@ -3,6 +3,7 @@ import "../style/WebPractice.css";
 import React, { useState,useEffect } from 'react';
 import PracticeModule from './PracticeModule';
 import { useGlobal } from '../components/GlobalContext';
+import ReactDOM from 'react-dom';
 
 
 function WebPractice() {
@@ -11,50 +12,6 @@ function WebPractice() {
   const { globalVariable, setGlobalVariable } = useGlobal();
    let io=globalVariable;
    logInfo=io.split("$");
-
-      let Marks=[
-        [
-          "953622244024",
-          "001",
-          3
-        ],
-        [
-          "953622244024",
-          "001",
-          3
-        ],
-        [
-          "404",
-          "001",
-          3
-        ],
-        [
-          "404",
-          "006",
-          3
-        ],
-        [
-          "404",
-          "004",
-          3
-        ],
-        [],
-        [
-          "404",
-          "003",
-          3
-        ],
-        [
-          "404",
-          "003",
-          3
-        ],
-        [
-          "404",
-          "003",
-          3
-        ]
-      ];
 
 
   // API Fetch
@@ -83,14 +40,39 @@ function WebPractice() {
 
   console.log(WebData);
 
+  // API Fetch
+
+  let ReqDataM=[{"RegNo":"000","TestId":"000","MarkGet":0}];
+  const [MarkData, setMarkData] = useState(ReqDataM);
+
+  useEffect(() => {
+    const apiUrl = 'http://localhost:9999/api/marks';
+  
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(resultMData => {
+        setMarkData(resultMData);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  console.log(MarkData);
+
 
   function rept(n){
     var reg=logInfo[0]
     var id=n.Id;
     var rlt=true;
-    for(var i=0;i<Marks.length;i++){
-      if(Marks[i][0]==reg && Marks[i][1]==id){
-        rlt=true;// fttfttfft
+    for(var i=0;i<MarkData.length;i++){
+      if(MarkData[i].RegNo==reg && MarkData[i].TestId==id){
+        rlt=false;
       }
     }
     console.log(id)
@@ -103,15 +85,18 @@ function WebPractice() {
   }
 
   const LatestData=WebData.slice(-3);
-  
-  const [TId, setTId] = useState(0);
+
+  const container = document.querySelector(".testMod");
+
   function chgTest(x){
-    //document.querySelector("Temp").test="{x}";
+
     if(rept(x)){
-    setTId(WebData.indexOf(x));
-    document.querySelector(".bn").style="display:none;";
-    document.querySelector(".MoreWeb2").style="display:none;";
-    document.querySelector(".testMod").style="display:flex;";}
+      ReactDOM.render(<PracticeModule TId={WebData.indexOf(x)} logInfo={logInfo} className='TTT'/>, container);
+      document.querySelector(".bn").style="display:none;";
+      document.querySelector(".MoreWeb2").style="display:none;";
+      console.log("ppo")
+      document.querySelector(".testMod").style="display:flex;";
+    }
     else{
       document.querySelector(".bn").style="display:none;";
       document.querySelector(".MoreWeb2").style="display:none;";
@@ -196,7 +181,7 @@ function WebPractice() {
               <div className="col col-4">Author</div>
             </li>
             {WebData.map((data) => (
-              <a onClick={()=>chgTest(data.Title)}>
+              <a onClick={()=>chgTest(data)}>
               <li className="table-row">
                 <div className="col col-1" >{data.Id}</div>
                 <div className="col col-2" >{data.Title}</div>
@@ -209,7 +194,7 @@ function WebPractice() {
         </div>
         </div>
         <div className='testMod'>
-          <PracticeModule TId={TId} logInfo={logInfo.logInfo} className='TTT'/>
+          
         </div>
         <div className='no'>
           <p>You Already Completed</p>

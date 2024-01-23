@@ -5,16 +5,25 @@ import API from "./API";
 import Home from "./pages/Home";
 import Learn from "./pages/Learn";
 import Practice from "./pages/Practice";
+import WebPractice from "./pages/WebPractice";
+import FormPractice from "./pages/FormPractice";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-            <Route exact path="/Home" element={<Home/>}/>
-            <Route exact path="/Learn" element={<Learn/>}/>
-            <Route exact path="/Practice" element={<Practice/>}/>
-            <Route exact path="/apihandle" element={<API/>}/>
+          <Route path="/">
+            <Route index element={<Home />} />
+            <Route path="Home" element={<Home />} />
+            <Route path="Learn" element={<Learn />} />
+            <Route path="Practice/*">
+              <Route index element={<Practice />} />
+              <Route path="WebPractice" element={<WebPractice />} />
+              <Route path="FormPractice" element={<FormPractice />} />
+            </Route>
+            <Route path="*" element={<API />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
