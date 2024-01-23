@@ -3,8 +3,9 @@ const app = express();
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const markRoutes = require("./Routes/MarkRoutes.js");
+const MarkRoutes = require("./Routes/MarkRoutes.js");
 const FormRoutes = require("./Routes/FormRoutes.js");
+const WebRoutes = require("./Routes/WebRoutes.js");
 const cors = require('cors');
 
 const port=process.env.PORT;
@@ -32,4 +33,6 @@ mongoose.connect(process.env.DB_URI)
         console.log(error);
     })
 
+app.use("/api/marks",MarkRoutes);
 app.use("/api/forms",FormRoutes);
+app.use("/api/web",WebRoutes);

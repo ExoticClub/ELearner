@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import "../style/PracticeModule.css";
 
 function PracticeModule({ TId, logInfo }) {
+  console.log(TId)
     let datas=[
         [
           "953622244024",
@@ -192,13 +193,40 @@ function PracticeModule({ TId, logInfo }) {
         ]
       }
 
+   // API Fetch
+
+   let ReqData=[{"Id":"404","Title":"No Data","Question":["No Data"],"Options":[["none"]],"Answer":["none"],"Author":"None","updatedAt":"404T565"},{"Id":"404","Title":"No Data","Question":["No Data"],"Options":[["none"]],"Answer":["none"],"Author":"None","updatedAt":"404T565"},{"Id":"404","Title":"No Data","Question":["No Data"],"Options":[["none"]],"Answer":["none"],"Author":"None","updatedAt":"404T565"}]
+
+   const [WebData, setWebData] = useState(ReqData);
+ 
+   useEffect(() => {
+     const apiUrl = 'http://localhost:9999/api/web';
+   
+     fetch(apiUrl)
+       .then(response => {
+         if (!response.ok) {
+           throw new Error(`HTTP error! Status: ${response.status}`);
+         }
+         return response.json();
+       })
+       .then(resultData => {
+         setWebData(resultData);
+       })
+       .catch(error => {
+         console.error('Error fetching data:', error);
+       });
+   }, []);
+ 
+   console.log(WebData);
+
   const [mark, setMark] = useState(0);
   const [QData, setQData] = useState(QDatas);
   const [selectedOption, setSelectedOption] = useState('');
-  const [questionIndex, setQuestionIndex] = useState(QDatas.question[TId].length - 1);
+  const [questionIndex, setQuestionIndex] = useState(TId.Question.length-1);
+  console.log(questionIndex);
 
-  useEffect(() => {
-    // Additional logic if needed when component mounts
+  useEffect(async () => {
+    await setQuestionIndex(TId.Question.length-1)
   }, []);
 
   const handleOptionChange = (e) => {
@@ -208,7 +236,7 @@ function PracticeModule({ TId, logInfo }) {
 
   const optionVerification = () => {
     if (selectedOption !== '') {
-      if (selectedOption === QData.answer[TId][questionIndex]) {
+      if (selectedOption === TId.Answer[questionIndex]) {
         setMark(mark + 1);
       }
     }
@@ -229,11 +257,11 @@ function PracticeModule({ TId, logInfo }) {
     <div className='iio'>
       <div className='dbody'>
         <form className='test-cont'>
-          <p className='tttoo'>{QData.title[TId]}</p>
+          <p className='tttoo'>{TId.Title}</p>
           <div className='qa'>
-            <p className='q'>{QData.question[TId][questionIndex]}</p>
+            <p className='q'>{TId.Question[questionIndex]}</p>
             <div className='a'>
-              {QData.options[TId][questionIndex].map((option) => (
+              {TId.Options[questionIndex].map((option) => (
                 <label key={option} className='opt'>
                   <input
                     type='radio'
@@ -253,7 +281,7 @@ function PracticeModule({ TId, logInfo }) {
         </form>
       </div>
       <form className='mark'>
-        <p className='uii'>{QData.title[TId]}</p>
+        <p className='uii'>{TId.Title}</p>
         <p>Mark: {mark}</p>
         <button type='submit' id='butt'>
           Go Back

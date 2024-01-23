@@ -12,149 +12,6 @@ function WebPractice() {
    let io=globalVariable;
    logInfo=io.split("$");
 
-    let QData={
-        "id": [
-          "001",
-          "002",
-          "003",
-          "004"
-        ],
-        "title": [
-          "About Sun",
-          "About Air",
-          "About You",
-          "Economy"
-        ],
-        "question": [
-          [
-            "What is shape of sun ?",
-            "what is color of sun ?",
-            "where is sun ?"
-          ],
-          [
-            "Q1",
-            "Q2",
-            "Q3"
-          ],
-          [
-            "Q1",
-            "Q2",
-            "Q3"
-          ],
-          [
-            "What Is Price Of Puffs ?",
-            "What Is Price Of Cone IceCream ?",
-            "Do You Like India ?"
-          ]
-        ],
-        "options": [
-          [
-            [
-              "Square",
-              "Reactangle",
-              "Triangle",
-              "Sphere"
-            ],
-            [
-              "Blue",
-              "Red"
-            ],
-            [
-              "Solar System",
-              "Chennai",
-              "america",
-              "Madurai"
-            ]
-          ],
-          [
-            [
-              "O1",
-              "O2",
-              "O3"
-            ],
-            [
-              "O1",
-              "O2",
-              "O3"
-            ],
-            [
-              "O1",
-              "O2",
-              "O3"
-            ]
-          ],
-          [
-            [
-              "O1",
-              "O2",
-              "O3"
-            ],
-            [
-              "O1",
-              "O2",
-              "O3"
-            ],
-            [
-              "O1",
-              "O2",
-              "O3"
-            ]
-          ],
-          [
-            [
-              "Rs15",
-              "Rs20",
-              "Rs10",
-              "Free"
-            ],
-            [
-              "Rs20",
-              "Rs35",
-              "Rs30",
-              "Free"
-            ],
-            [
-              "Yes",
-              "No"
-            ]
-          ]
-        ],
-        "answer": [
-          [
-            "Sphere",
-            "Red",
-            "Solar System"
-          ],
-          [
-            "O1",
-            "O2",
-            "O3"
-          ],
-          [
-            "O1",
-            "O2",
-            "O3"
-          ],
-          [
-            "Rs15",
-            "Rs35",
-            "Yes"
-          ]
-        ],
-        "Date": [
-          "08/06/2024",
-          "01/01/2024",
-          "26/12/2024",
-          "01/01/2024"
-        ],
-        "Author": [
-          "Luffy",
-          "Luna",
-          "Zoro",
-          "Williamson"
-        ]
-      };
-
       let Marks=[
         [
           "953622244024",
@@ -199,15 +56,41 @@ function WebPractice() {
         ]
       ];
 
-  let details=QData.title;
+
+  // API Fetch
+
+  let ReqData=[{"Id":"404","Title":"No Data","Question":["No Data"],"Options":[["none"]],"Answer":["none"],"Author":"None","updatedAt":"404T565"},{"Id":"404","Title":"No Data","Question":["No Data"],"Options":[["none"]],"Answer":["none"],"Author":"None","updatedAt":"404T565"},{"Id":"404","Title":"No Data","Question":["No Data"],"Options":[["none"]],"Answer":["none"],"Author":"None","updatedAt":"404T565"}]
+
+  const [WebData, setWebData] = useState(ReqData);
+
+  useEffect(() => {
+    const apiUrl = 'http://localhost:9999/api/web';
+  
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(resultData => {
+        setWebData(resultData);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  console.log(WebData);
+
 
   function rept(n){
-    var reg=logInfo.logInfo[0]
-    var id=QData.title.indexOf(n)
+    var reg=logInfo[0]
+    var id=n.Id;
     var rlt=true;
     for(var i=0;i<Marks.length;i++){
       if(Marks[i][0]==reg && Marks[i][1]==id){
-        rlt=false;
+        rlt=true;// fttfttfft
       }
     }
     console.log(id)
@@ -219,15 +102,14 @@ function WebPractice() {
     document.querySelector(".bn").style="display:none;";
   }
 
-  const Latest=QData.title.slice(-3);
-  const LateDate=QData.Date.slice(-3);
+  const LatestData=WebData.slice(-3);
   
-  const [TId, setTId] = useState(0);
+  const [TId, setTId] = useState({"Id":"404","Title":"No Data","Question":["No Data"],"Options":[["none","none"]],"Answer":["none"],"Author":"None","updatedAt":"404T565"});
 
   function chgTest(x){
     //document.querySelector("Temp").test="{x}";
     if(rept(x)){
-    setTId(QData.title.indexOf(x));
+    setTId(x);
     document.querySelector(".bn").style="display:none;";
     document.querySelector(".MoreWeb2").style="display:none;";
     document.querySelector(".testMod").style="display:flex;";}
@@ -249,51 +131,51 @@ function WebPractice() {
                 <div className="ag-format-container">
                   <div className="ag-courses_box">
                     <div className="ag-courses_item">
-                      <a onClick={()=>chgTest(Latest[2])} className="ag-courses-item_link">
+                      <a onClick={()=>chgTest(LatestData[2])} className="ag-courses-item_link">
                         <div className="ag-courses-item_bg"></div>
 
                         <div className="ag-courses-item_title">
-                          {Latest[2]||"No Data Found !"}
+                          {LatestData[2].Title||"No Data Found !"}
                         </div>
 
                         <div className="ag-courses-item_date-box">
                           Start:
                           <span className="ag-courses-item_date">
-                            {LateDate[2]||"No Data Found !"}
+                            {LatestData[2].updatedAt.split("T")[0]||"No Data Found !"}
                           </span>
                         </div>
                       </a>
                     </div>
 
                     <div className="ag-courses_item">
-                      <a onClick={()=>chgTest(Latest[1])} className="ag-courses-item_link">
+                      <a onClick={()=>chgTest(LatestData[1])} className="ag-courses-item_link">
                         <div className="ag-courses-item_bg"></div>
 
                         <div className="ag-courses-item_title">
-                          {Latest[1]||"No Data Found !"}
+                          {LatestData[1].Title||"No Data Found !"}
                         </div>
 
                         <div className="ag-courses-item_date-box">
                           Start:
                           <span className="ag-courses-item_date">
-                          {LateDate[1]||"No Data Found !"}
+                          {LatestData[1].updatedAt.split("T")[0]||"No Data Found !"}
                           </span>
                         </div>
                       </a>
                     </div>
 
                     <div className="ag-courses_item">
-                      <a onClick={()=>chgTest(Latest[0])} className="ag-courses-item_link">
+                      <a onClick={()=>chgTest(LatestData[0])} className="ag-courses-item_link">
                         <div className="ag-courses-item_bg"></div>
 
                         <div className="ag-courses-item_title">
-                          {Latest[0]||"No Data Found !"}
+                          {LatestData[0].Title||"No Data Found !"}
                         </div>
 
                         <div className="ag-courses-item_date-box">
                           Start:
                           <span className="ag-courses-item_date">
-                          {LateDate[0]||"No Data Found !"}
+                          {LatestData[0].updatedAt.split("T")[0]||"No Data Found !"}
                           </span>
                         </div>
                       </a>
@@ -314,13 +196,13 @@ function WebPractice() {
               <div className="col col-3">Date</div>
               <div className="col col-4">Author</div>
             </li>
-            {details.map((data,id) => (
-              <a onClick={()=>chgTest(QData.title[id])}>
+            {WebData.map((data) => (
+              <a onClick={()=>chgTest(data.Title)}>
               <li className="table-row">
-                <div className="col col-1" >{QData.id[id]}</div>
-                <div className="col col-2" >{data}</div>
-                <div className="col col-3" >{QData.Date[id]}</div>
-                <div className="col col-4" >{QData.Author[id]}</div>
+                <div className="col col-1" >{data.Id}</div>
+                <div className="col col-2" >{data.Title}</div>
+                <div className="col col-3" >{data.updatedAt.split("T")[0]}</div>
+                <div className="col col-4" >{data.Author}</div>
               </li>
               </a>
             ))}
