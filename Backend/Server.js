@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 const markRoutes = require("./Routes/MarkRoutes.js");
+const cors = require('cors');
 
 const port=process.env.PORT;
 
@@ -14,6 +15,7 @@ app.use((req,res,next)=>{
 });
 
 app.use(express.json());
+app.use(cors());
 
 app.get("/",(req,res)=>{
     res.send("Hello Worlds");
