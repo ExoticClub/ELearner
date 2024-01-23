@@ -4,6 +4,7 @@ import Card2 from "../assets/landscape-2.png";
 import { useGlobal } from '../components/GlobalContext';
 import "../style/Practice.css";
 import FormPractice from './FormPractice';
+import WebPractice from './WebPractice';
 
 
 
@@ -67,7 +68,7 @@ function Practice() {
           <FormPractice/>
       </div>
       <div className='WebT'>
-          {/* <WebTest logInfo={ios}/> */}
+          <WebPractice logInfo={ios}/>
       </div>
         
     </>

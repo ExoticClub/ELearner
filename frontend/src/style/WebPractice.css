@@ -35,15 +35,17 @@
 .tttt,.tt,.WebT{
     width:100%;
 }
+body{
+    overflow: hidden;
+}
 .tttt{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    height: 100vh;
+    height: 90vh;
 }
+
 
 .ag-format-container {
     width: 1142px;
