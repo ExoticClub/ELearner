@@ -1,9 +1,10 @@
 import '../style/Practice.css';
 import "../style/WebPractice.css";
 import React, { useState,useEffect } from 'react';
+import PracticeModule from './PracticeModule';
 
 
-function WebTest(logInfo) {
+function WebPractice(logInfo) {
 
     let QData={
         "id": [
@@ -321,7 +322,7 @@ function WebTest(logInfo) {
         </div>
         </div>
         <div className='testMod'>
-          {/* <Temp TId={TId} logInfo={logInfo.logInfo} className='TTT'/> */}
+          <PracticeModule TId={TId} logInfo={logInfo.logInfo} className='TTT'/>
         </div>
         <div className='no'>
           <p>You Already Completed</p>
@@ -331,4 +332,4 @@ function WebTest(logInfo) {
   )
 }
 
-export default WebTest
+export default WebPractice
