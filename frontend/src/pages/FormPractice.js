@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import "../style/WebPractice.css";
 import "../style/Practice.css";
+import { Link } from 'react-router-dom';
 
 function FormPractice(){
 
@@ -30,6 +31,7 @@ function FormPractice(){
 
   function opnMore(){
     document.querySelector(".MoreWeb1").style="display:flex;";
+    document.querySelector(".backer").style="display:flex;";
     document.querySelector(".bh").style="display:none;";
   }
 
@@ -51,7 +53,7 @@ function FormPractice(){
                 <div className="ag-format-container">
                   <div className="ag-courses_box">
                     <div className="ag-courses_item">
-                      <a href={Latest[2].Link||"/404"} className="ag-courses-item_link">
+                      <Link to={Latest[2].Link||"/404"} className="ag-courses-item_link">
                         <div className="ag-courses-item_bg"></div>
 
                         <div className="ag-courses-item_title">
@@ -64,11 +66,11 @@ function FormPractice(){
                             {Latest[2].updatedAt.split("T")[0]||"No Data Found"}
                           </span>
                         </div>
-                      </a>
+                      </Link>
                     </div>
 
                     <div className="ag-courses_item">
-                      <a href={Latest[1].Link||"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} className="ag-courses-item_link">
+                      <Link to={Latest[1].Link||"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} className="ag-courses-item_link">
                         <div className="ag-courses-item_bg"></div>
 
                         <div className="ag-courses-item_title">
@@ -81,11 +83,11 @@ function FormPractice(){
                           {Latest[1].updatedAt.split("T")[0]||"No Data Found"}
                           </span>
                         </div>
-                      </a>
+                      </Link>
                     </div>
 
                     <div className="ag-courses_item">
-                      <a href={Latest[0].Link||"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} className="ag-courses-item_link">
+                      <Link to={Latest[0].Link||"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} className="ag-courses-item_link">
                         <div className="ag-courses-item_bg"></div>
 
                         <div className="ag-courses-item_title">
@@ -98,7 +100,7 @@ function FormPractice(){
                           {Latest[0].updatedAt.split("T")[0]||"No Data Found"}
                           </span>
                         </div>
-                      </a>
+                      </Link>
                     </div>
 
                   </div>
@@ -116,16 +118,19 @@ function FormPractice(){
               <div className="col col-3">Date</div>
             </li>
             {FormData.map((data,id) => (
-              <a href={data.Link}>
+              <Link to={data.Link}>
               <li className="table-row">
                 <div className="col col-1" >{data.Id}</div>
                 <div className="col col-2" >{data.Title}</div>
                 <div className="col col-3" >{data.updatedAt.split("T")[0]}</div>
               </li>
-              </a>
+              </Link>
             ))}
           </ul>
         </div>
+        </div>
+        <div>
+        <Link to={"/practice/"} className='backer'>{"X Close"}</Link>
         </div>
       
     </>

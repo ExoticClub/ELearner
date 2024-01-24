@@ -4,6 +4,7 @@ import React, { useState,useEffect } from 'react';
 import PracticeModule from './PracticeModule';
 import { useGlobal } from '../components/GlobalContext';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 
 
 function WebPractice() {
@@ -81,6 +82,7 @@ function WebPractice() {
 
   function opnMore(){
     document.querySelector(".MoreWeb2").style="display:flex;";
+    document.querySelector(".backer").style="display:flex;";
     document.querySelector(".bn").style="display:none;";
   }
 
@@ -198,7 +200,14 @@ function WebPractice() {
         </div>
         <div className='no'>
           <p>You Already Completed</p>
-          <a className='glow-button' href='/practice/webpractice'>Go Back</a>
+          <Link to={'/practice'} className='glow-button'>Go Back</Link>
+        </div>
+
+        <div>
+          <p className='namer'>{logInfo[1]}</p>
+        </div>
+        <div>
+          <Link to={"/practice/"} className='backer'>{"X Close"}</Link>
         </div>
         
     </>

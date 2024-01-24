@@ -58,8 +58,8 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
 
-  const { globalVariable, setGlobalVariable } = useGlobal();
-
+  const { globalVariable,setGlobalVariable } = useGlobal();
+  const {Logs,setLogs}=useState("OP");
   const [SClass, setSClass] = useState("None");
   const [Reg, setReg] = useState('');
   const [Password, setPassword] = useState('');
@@ -95,6 +95,7 @@ const LoginPage = () => {
           console.log("Welcome");
           setInfo(LogData.Reg[i] + "$" + LogData.Name[i]);
           setGlobalVariable(LogData.Reg[i] + "$" + LogData.Name[i]);
+          console.log(globalVariable)
           navigate("/Home")
         } else {
           alert("Password Incorrect!");

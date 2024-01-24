@@ -1,5 +1,5 @@
 import '../style/Learn.css';
-
+import { Link } from 'react-router-dom';
 
 function Video() {
 
@@ -42,10 +42,10 @@ function Video() {
             <p>ENGLISH</p>
           </div>
           <div className='lo'>
-            <a href='/Home'>Home</a>
-            <a href='/Learn'>Learn</a>
-            <a href='/Practice'>Practice</a>
-            <a href='/Info'>Info</a>
+            <Link to={'/Home'}>Home</Link>
+            <Link to={'/Learn'}>Learn</Link>
+            <Link to={'/Practice'}>Practice</Link>
+            <Link to={'/Info'}>Info</Link>
           </div>
         </div>
         <div className='Foot'>

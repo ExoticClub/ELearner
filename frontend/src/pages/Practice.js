@@ -3,14 +3,17 @@ import Card1 from "../assets/landscape-1.png";
 import Card2 from "../assets/landscape-2.png";
 import { useGlobal } from '../components/GlobalContext';
 import "../style/Practice.css";
+import { Link } from 'react-router-dom';
 
 
 
 
 function Practice() {
-   const { globalVariable, setGlobalVariable } = useGlobal();
+   const { globalVariable ,setGlobalVariable} = useGlobal();
    let io=globalVariable;
    let ios=io.split("$");
+
+   console.log(globalVariable);
      
     return (
     <>
@@ -25,7 +28,7 @@ function Practice() {
         <div className="containerTest">
          
          <div className="card__containerTest">
-            <a href='/practice/webpractice'>
+            <Link to={'/practice/webpractice'}>
             <button className="card__article">
                <img src={Card1} alt="image" className="card__img"/>
 
@@ -34,9 +37,9 @@ function Practice() {
                   <h2 className="card__title">Web Module</h2>
                </div>
             </button>
-            </a>
+            </Link>
 
-            <a href='/practice/formpractice'>
+            <Link to={'/practice/formpractice'}>
             <button className="card__article" >
                <img src={Card2} alt="image" className="card__img"/>
 
@@ -45,7 +48,7 @@ function Practice() {
                   <h2 className="card__title">Google Forms</h2>
                </div>
             </button>
-            </a>
+            </Link>
 
             
          </div>

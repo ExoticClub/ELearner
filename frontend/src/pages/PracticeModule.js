@@ -3,6 +3,7 @@ import "../style/WebPractice.css"
 import { useState } from 'react';
 import React, { useEffect } from 'react';
 import "../style/PracticeModule.css";
+import { Link } from 'react-router-dom';
 
 function PracticeModule({ TId, logInfo }) {
   console.log(TId)
@@ -94,18 +95,18 @@ function PracticeModule({ TId, logInfo }) {
       document.querySelector('.test-cont').style.display = 'none';
     }
   };
-  const [Step,setStep]=useState(0);
   function SubmitHand(){
-    if(Step==0){
     handlePostRequest({"RegNo":logInfo[0],"TestId":QData.Id,"MarkGet":mark});
-    document.querySelector(".JJoy").innerHTML="Go Back";
+    document.querySelector(".JJoy").style="display:none;";
     document.querySelector(".marktsb").style="display:flex;";
-    setStep(1);
-  }
-    else if(Step==1){
-      document.querySelector(".JJoy").type="submit";
-    }
+    document.querySelector("#op").style="display:flex;";
 
+  }
+
+  const REd = ()=>{
+    window.history.pushState(null, null, '/practice');
+    // You may need to dispatch a popstate event if needed
+    window.dispatchEvent(new Event('popstate'));
   }
 
   return (
@@ -135,13 +136,16 @@ function PracticeModule({ TId, logInfo }) {
           </div>
         </form>
       </div>
-      <form className='mark'>
+      <div className='mark'>
         <p className='uii'>{QData.Title}</p>
         <p className='marktsb'>Mark: {mark}</p>
         <button type='button' id='butt' className="JJoy" onClick={SubmitHand}>
           Submit
         </button>
-      </form>
+        <button onClick={REd} id='op' className="oop">
+          Go Back
+        </button>
+      </div>
     </div>
   );
 }

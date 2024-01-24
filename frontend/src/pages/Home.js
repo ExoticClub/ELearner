@@ -2,9 +2,12 @@ import { Link } from 'react-router-dom';
 import LandingImg from "../assets/Landing.png";
 import "../style/Home.css";
 import "../style/Components.css";
+import { useGlobal } from '../components/GlobalContext';
 
 function Home() {
-
+  const {globalVariable} = useGlobal();
+  console.log(globalVariable);
+  
   return (
     <>
       <div className='landing'>
@@ -13,10 +16,10 @@ function Home() {
             <p>ENGLISH</p>
           </div>
           <div className='lo'>
-            <a href='/Home'>Home</a>
-            <a href='/Learn'>Learn</a>
-            <a href='/Practice'>Practice</a>
-            <a href='/Info'>Info</a>
+            <Link to={'/Home'}>Home</Link>
+            <Link to={'/Learn'}>Learn</Link>
+            <Link to={'/Practice'}>Practice</Link>
+            <Link to={'/Info'}>Info</Link>
           </div>
         </div>
 
@@ -25,8 +28,8 @@ function Home() {
             <p className='Head'>Language Isn't Barrier In Communication</p>
             <p className='Para'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt, molestias magni nostrum exercitationem quia accusantium minus libero voluptate iure</p>
             <div className='buttons'>
-              <a href="/learn" className='glow-button' id='home-buts'>Learn</a>
-              <a href="/practice" className='glow-button'>Practice</a>
+              <Link to={"/learn"} className='glow-button' id='home-buts'>Learn</Link>
+              <Link to={"/practice"} className='glow-button'>Practice</Link>
             </div>
           </div>
           <div className='RR'>
@@ -34,7 +37,7 @@ function Home() {
           </div>
         </div>
         <div className='Foot'>
-          <p>This Website Was Created By <a>Team Exotic</a></p>
+          <p>This Website Was Created By <Link>Team Exotic</Link></p>
         </div>
 
       </div>

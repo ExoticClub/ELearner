@@ -325,3 +325,19 @@ h2 {
   height:200px;
   border-radius: 10px;
 }
+.backer{
+  background-color: rgb(250, 50, 50);
+  position: fixed;
+  top:10px;
+  left:15px;
+  font-size: 10pt;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: bold;
+  color: black;
+  display: none;
+}
+.backer:hover{
+  cursor: pointer;
+}
