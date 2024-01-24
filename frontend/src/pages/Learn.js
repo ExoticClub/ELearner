@@ -1,31 +1,41 @@
 import '../style/Learn.css';
 import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
 function Video() {
 
-    let VData={
-        "Title": [
-          "Ding",
-          "Naga"
-        ],
-        "Link": [
-          "https://www.youtube.com/embed/C_nLt9l74ZY?si=Drt-SxASD73It5jY",
-          "https://www.youtube.com/embed/C_nLt9l74ZY?si=Drt-SxASD73It5jY"
-        ],
-        "Id": [
-          "002",
-          "004"
-        ]
-      };
+  // API Fetch
 
-  let VidD=VData.Title;
+  let ReqData=[{"Title":"None","Link":"404"}];
+  const [Learn, setLearn] = useState(ReqData);
+
+  useEffect(() => {
+    const apiUrl = 'http://localhost:9999/api/learn';
+  
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(resultData => {
+        setLearn(resultData);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  console.log(Learn);
+
 
 
   function HandleVideo(Tit,li,id){
     document.querySelector("#VVd").src=li+"?autoplay=1&mute=0";
     document.querySelector(".main-vid-title").innerHTML=Tit;
     
-    for(let i=0;i<VidD.length;i++){
+    for(let i=0;i<Learn.length;i++){
       document.querySelector("#kk"+i).style="background-color:grey;";
       document.querySelector("#kk"+i+" h3").style="color:white;";
     }
@@ -58,16 +68,16 @@ function Video() {
     <div className="main-video-container">
       <iframe className='VidPlay' id="VVd"
       allowFullScreen={true}
-    src={"https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=0"}>
+    src={Learn[0].Link}>
       </iframe>
-      <h3 className="main-vid-title">Opne</h3>
+      <h3 className="main-vid-title">{Learn[0].Title}</h3>
     </div>
 
     <div className="video-list-container">
 
-    {VidD.map((data,id) => (
-              <a className="list active" id={"kk"+id} onClick={()=>HandleVideo(data,VData.Link[id],id)}>
-                <h3 className="list-title" >{data}</h3>
+    {Learn.map((data,id) => (
+              <a className="list active" id={"kk"+id} onClick={()=>HandleVideo(data.Title,data.Link,id)}>
+                <h3 className="list-title" >{data.Title}</h3>
               </a>
             ))}
 
