@@ -8,6 +8,7 @@ import Practice from "./pages/Practice";
 import WebPractice from "./pages/WebPractice";
 import FormPractice from "./pages/FormPractice";
 import LoginPage from "./pages/Login";
+import Admin from "./pages/Admin/Admin";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path="WebPractice" element={<WebPractice />} />
               <Route path="FormPractice" element={<FormPractice />} />
             </Route>
+            <Route path="Admin" element={<Admin />} />
             <Route path="*" element={<API />} />
           </Route>
         </Routes>
