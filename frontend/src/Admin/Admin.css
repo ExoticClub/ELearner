@@ -85,3 +85,19 @@
     justify-content: space-evenly;
     align-items:center;
 }
+.LEARN{
+    flex-direction: column;
+}
+
+.Excal{
+    height: 350px;
+}
+.Excal::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .Excal {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }

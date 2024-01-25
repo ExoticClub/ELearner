@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { BarChart } from '@mui/x-charts/BarChart';
 import "./Admin.css";
 import { useState,useEffect } from 'react';
+import LearnTable from "./LearnTable";
 
 
 function Home() {
@@ -291,7 +292,12 @@ function Home() {
           </div>
         </div>
         <div className='LEARN'>
-
+          <div>
+            <button>Create</button>
+            <button>Edit</button>
+            <button>Delete</button>
+          </div>
+          <LearnTable/>
         </div>
         <div className='PRACTICE'>
 
