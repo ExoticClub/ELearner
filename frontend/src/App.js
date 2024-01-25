@@ -8,7 +8,7 @@ import Practice from "./pages/Practice";
 import WebPractice from "./pages/WebPractice";
 import FormPractice from "./pages/FormPractice";
 import LoginPage from "./pages/Login";
-import Admin from "./pages/Admin/Admin";
+import Admin from "./Admin/Admin";
 
 function App() {
   return (

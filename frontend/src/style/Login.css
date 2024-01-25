@@ -15,7 +15,7 @@
   
   body {
     font-family: 'Josefin Sans', sans-serif;
-    background-color: #f4f4f4;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -308,5 +308,5 @@
     margin: 10px 0;
   }
   .Page{
-    background-color: #f4f4f4;
+    background-color: white;
   }
