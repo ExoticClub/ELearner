@@ -64,3 +64,24 @@
     width:150px;
     text-align: center;
 }
+
+.ki button{
+    background-color: lightgrey;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.ki button:hover{
+    color:white;
+}
+
+.ANALYSIS{
+    display: flex;
+    justify-content: space-evenly;
+    align-items:center;
+}
+.LEARN,.PRACTICE,.STUDENT{
+    display: none;
+    justify-content: space-evenly;
+    align-items:center;
+}

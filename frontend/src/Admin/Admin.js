@@ -65,6 +65,31 @@ function Home() {
    
      console.log(QD);
 
+    // API Fetch
+
+    let ReqDataL=[{"Name":"None","RegNo":"404","Department":"CSBS","Password":"None"}];
+    const [Log, setLog] = useState(ReqDataL);
+  
+    useEffect(() => {
+      const apiUrl = 'http://localhost:9999/api/log';
+    
+      fetch(apiUrl)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(resultData => {
+          setLog(resultData);
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    }, []);
+  
+    console.log(Log);
+
    // API Fetch
 
    let ReqData=[{"RegNo":"404","TestId":"None","MarkGet":0}];
@@ -127,11 +152,63 @@ function Home() {
 
   function cdf(){
     const Cd=[];
+    let CD=[];
     let dep=["CSBS","CSE","ECE","EEE","AIDS","IT","CIVIL","MECH"]
+    for(const d of dep){
+      let nowT=0;
+      for(const m of mark){
+        let nowR=m.RegNo;
+        for(const l of Log){
+          if(nowR===l.RegNo){
+            if(d===l.Department){
+              nowT=nowT+m.MarkGet
+            }
+          }
+        }
+      }
+      Cd.push(nowT)
+    }
+    console.log(Cd);
+    let Max=Cd[0];
+    for(const c of Cd){
+      if(c>Max){
+        Max=c
+      }
+    }
+    for(const e of Cd){
+      CD.push((e/Max)*100)
+    }
+    chartData=CD;
   }
 
   bstf();
   wstf();
+  cdf();
+
+  const opnANA=()=>{
+    document.querySelector(".ANALYSIS").style="display:flex;";
+    document.querySelector(".LEARN").style="display:none;";
+    document.querySelector(".PRACTICE").style="display:none;";
+    document.querySelector(".STUDENT").style="display:none;";
+  }
+  const opnLEA=()=>{
+    document.querySelector(".ANALYSIS").style="display:none;";
+    document.querySelector(".LEARN").style="display:flex;";
+    document.querySelector(".PRACTICE").style="display:none;";
+    document.querySelector(".STUDENT").style="display:none;";
+  }
+  const opnPRA=()=>{
+    document.querySelector(".ANALYSIS").style="display:none;";
+    document.querySelector(".LEARN").style="display:none";
+    document.querySelector(".PRACTICE").style="display:flex;";
+    document.querySelector(".STUDENT").style="display:none;";
+  }
+  const opnSTU=()=>{
+    document.querySelector(".ANALYSIS").style="display:none;";
+    document.querySelector(".LEARN").style="display:none;";
+    document.querySelector(".PRACTICE").style="display:none;";
+    document.querySelector(".STUDENT").style="display:flex;";
+  }
   
   return (
     <>
@@ -140,21 +217,21 @@ function Home() {
           <div className='ro'>
             <p>ADMIN</p>
           </div>
-          <div className='lo'>
-            <Link to={'/Home'}>Home</Link>
-            <Link to={'/Learn'}>Analysis</Link>
-            <Link to={'/Practice'}>Learn</Link>
-            <Link to={'/Info'}>Practice</Link>
+          <div className='lo ki'>
+            <button onClick={opnANA}>Analysis</button>
+            <button onClick={opnLEA}>Learn</button>
+            <button onClick={opnPRA}>Practice</button>
+            <button onClick={opnSTU}>Student</button>
           </div>
         </div>
 
-        <div className='Body'>
+        <div className='ANALYSIS'>
           <div className='Analysis1'>
             <BarChart
               xAxis={[
                 {
                   id: 'barCategories',
-                  data: ['CSBS', 'CSE', 'AIDS',"ECE",'Mech','IT',"EEE","Civil"],
+                  data: ["CSBS","CSE","ECE","EEE","AIDS","IT","CIVIL","MECH"],
                   scaleType: 'band',
                   label:"Department",
                 },
@@ -213,6 +290,16 @@ function Home() {
 
           </div>
         </div>
+        <div className='LEARN'>
+
+        </div>
+        <div className='PRACTICE'>
+
+        </div>
+        <div className='STUDENT'>
+
+        </div>
+
         <div className='Foot'>
           <p>This Website Was Created By <Link>Team Exotic</Link></p>
         </div>
