@@ -101,3 +101,116 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
   }
+
+  .ButStack{
+    width:500px;
+    height: 80px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .ButStack button{
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: aquamarine;
+    transition:box-shadow 0.3s;
+    font-size: 12pt;
+  }
+
+  .ButStack button:hover{
+    box-shadow: 0 5px 15px aquamarine;
+    color:black;
+    
+  }
+
+  .CreateLearn{
+    position: fixed;
+    top:20vh;
+    background-color:#c2c2c2;
+    display: none;
+    flex-direction: column;
+    height:60vh;
+    width:40%;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 20px;
+    z-index:2;
+  }
+  .CreateLearn input{
+    height: 30px;
+    width:300px;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 12pt;
+  }
+
+  .EditLearn{
+    position: fixed;
+    top:20vh;
+    background-color:#c2c2c2;
+    display: none;
+    flex-direction: column;
+    height:60vh;
+    width:40%;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 20px; 
+    z-index:2;
+  }
+  .DeleteLearn{
+    position: fixed;
+    top:20vh;
+    background-color:#c2c2c2;
+    display: none;
+    flex-direction: column;
+    height:60vh;
+    width:40%;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 20px; 
+    z-index:2;
+
+  }
+
+  .ELP1{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height:100%;
+  }
+  .ELP1 input,.ELP2 input,.DL input{
+    width:300px;
+    height: 20px;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .ELP2{
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 15pt;
+  }
+
+  .DL{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height:100%;
+  }
+
+  .Gup{
+    background-color: rgba(0,0, 0, 0.8);
+    position: fixed;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: none;
+  }

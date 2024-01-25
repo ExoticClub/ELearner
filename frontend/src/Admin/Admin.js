@@ -7,6 +7,8 @@ import LearnTable from "./LearnTable";
 
 function Home() {
 
+  // - - - - --- ---- -- QD - -- --- - - -- - - -
+
      // API Fetch
 
      let ReqDataQ=[{
@@ -66,6 +68,9 @@ function Home() {
    
      console.log(QD);
 
+
+  //- -- -- -- -- -- -- -- - -- LOG  - -- - - - - -- - - - -
+
     // API Fetch
 
     let ReqDataL=[{"Name":"None","RegNo":"404","Department":"CSBS","Password":"None"}];
@@ -91,6 +96,8 @@ function Home() {
   
     console.log(Log);
 
+// - - - -- -- - - -- - - ---- MARK  -- - - - - - -- -- - -- 
+
    // API Fetch
 
    let ReqData=[{"RegNo":"404","TestId":"None","MarkGet":0}];
@@ -115,6 +122,62 @@ function Home() {
    }, []);
  
    console.log(mark);
+
+  //  - -- -  - - -- -- - LEARN  - - - - - - -- -  - - -  
+
+  // API Fetch
+
+  let ReqDataLe=[{"RegNo":"404","TestId":"None","MarkGet":0}];
+  const [learn, setlearn] = useState(ReqDataLe);
+
+  useEffect(() => {
+    const apiUrl = 'http://localhost:9999/api/learn';
+  
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(resultData => {
+        setlearn(resultData);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  console.log(learn);
+
+    // API POST
+
+    const handlePostRequestLearn = async (IO) => {
+   
+      try {
+        
+        const response = await fetch('http://localhost:9999/api/learn', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+          body: JSON.stringify(IO),
+        });
+   
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+   
+        const responseData = await response.json();
+        // Handle the response data as needed
+        console.log('Response data:', responseData);
+      } catch (error) {
+        console.error('Error during POST request:', error);
+      }
+    };
+
+    //- -- - - -- - - - --- - 
 
   let bst=[{"Regno":"404","Mark":0,"TestId":"You"}];
   let wst=[{"Regno":"404","Mark":0,"TestId":"You"}];
@@ -211,6 +274,38 @@ function Home() {
     document.querySelector(".STUDENT").style="display:flex;";
   }
   
+  const closeAll=()=>{
+    document.querySelector(".CreateLearn").style="display:none;";
+    document.querySelector(".EditLearn").style="display:none;";
+    document.querySelector(".DeleteLearn").style="display:none;";
+    document.querySelector(".ELP2").style="display:none;";
+    document.querySelector(".ELP1").style="display:flex;";
+    document.querySelector(".Gup").style="display:none;";
+  }
+  const checkLearnGet=()=>{
+    let compid=document.querySelector("#compid").value;
+    for(const le of learn){
+      if(le._id==compid){
+        document.querySelector(".ELP2").style="display:flex;";
+        document.querySelector(".ELP1").style="display:none;";
+        document.querySelector("#compTit").value=le.Title;
+        document.querySelector("#compLi").value=le.Link;
+      }
+    }
+  }
+  const CreateLearner=()=>{
+    const TitL=document.querySelector(".creTi").value;
+    const Lin=document.querySelector(".creLi").value;
+    handlePostRequestLearn({"Title":TitL,"Link":Lin});
+    closeAll();
+  }
+  const CLopn=()=>{document.querySelector(".CreateLearn").style="display:flex;";
+  document.querySelector(".Gup").style="display:flex;"}
+  const ELopn=()=>{document.querySelector(".EditLearn").style="display:flex;";
+  document.querySelector(".Gup").style="display:flex;"}
+  const DLopn=()=>{document.querySelector(".DeleteLearn").style="display:flex;";
+  document.querySelector(".Gup").style="display:flex;"}
+  
   return (
     <>
       <div className='landing'>
@@ -292,12 +387,53 @@ function Home() {
           </div>
         </div>
         <div className='LEARN'>
-          <div>
-            <button>Create</button>
-            <button>Edit</button>
-            <button>Delete</button>
+          <div className='ButStack'>
+            <button onClick={CLopn}>Create</button>
+            <button onClick={ELopn}>Edit</button>
+            <button onClick={DLopn}>Delete</button>
           </div>
           <LearnTable/>
+          <div className='CreateLearn'>
+            <p>*Ensure That The Link Get From Embeded Code.</p>
+            <input type='text' placeholder='Title' className='creTi'></input>
+            <input type='text' placeholder='Link' className='creLi'></input>
+            <div className='ButStack'>
+              <button onClick={CreateLearner}>Create</button>
+              <button onClick={closeAll}>Cancel</button>
+            </div>
+          </div>
+          <div className='EditLearn'>
+            <div className='ELP1'>
+              <p>* Ensure That The ID Listed In The Tabel.</p>
+              <input type='text' placeholder='Enter ID Of Component' id='compid'></input>
+              <div className='ButStack'>
+                <button onClick={checkLearnGet}>Get</button>
+                <button onClick={closeAll}>Cancel</button>
+              </div>
+            </div>
+            <div className='ELP2'>
+              <p>Edit Data</p>
+              <input type='text' id="compTit"></input>
+              <input type='text' id="compLi"></input>
+              <div className='ButStack'>
+                <button>Edit</button>
+                <button onClick={closeAll}>Cancel</button>
+              </div>
+            </div>
+          </div>
+          <div className='DeleteLearn'>
+            <div className='DL'>
+              <p>* Ensure That The ID Listed In The Tabel.</p>
+              <input type='text' placeholder='Enter ID Of Component' id='compid'></input>
+              <div className='ButStack'>
+                <button onClick={checkLearnGet}>Delete</button>
+                <button onClick={closeAll}>Cancel</button>
+              </div>
+            </div>
+          </div>
+          <a className='Gup' onClick={closeAll}>
+
+          </a>
         </div>
         <div className='PRACTICE'>
 
