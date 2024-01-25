@@ -26,4 +26,39 @@ const getForm = async(req,res)=>{
     }
 }
 
-module.exports={createForm,getForm}
+// PATCH
+
+const updateForm = async(req,res)=>{
+    const {id}=req.params;
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error:"Form Not Found"})
+    }
+    try{
+        const form=await FormModel.findByIdAndUpdate({
+            _id:id
+        },{
+            ...req.body
+        })
+        res.status(200).json(form)
+    }catch(e){
+        res.status(400).json({error:e.message})
+    }
+}
+
+// DELETE
+
+const deleteForm = async(req,res)=>{
+    const {id}=req.params;
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error:"Form Not Found"})
+    }
+    try{
+        const form=await FormModel.findByIdAndDelete(id);
+        res.status(200).json(form)
+    }catch(e){
+        res.status(400).json({error:e.message})
+    }
+}
+
+
+module.exports={createForm,getForm,updateForm,deleteForm}
