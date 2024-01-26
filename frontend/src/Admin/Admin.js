@@ -3,6 +3,7 @@ import { BarChart } from '@mui/x-charts/BarChart';
 import "./Admin.css";
 import { useState,useEffect } from 'react';
 import LearnTable from "./LearnTable";
+import WebTable from "./WebTable";
 
 
 function Home() {
@@ -67,6 +68,94 @@ function Home() {
      }, []);
    
      console.log(QD);
+
+     // API POST
+
+    const handlePostRequestQD = async (IO) => {
+   
+      try {
+        
+        const response = await fetch('http://localhost:9999/api/web', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+          body: JSON.stringify(IO),
+        });
+   
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+   
+        const responseData = await response.json();
+        // Handle the response data as needed
+        console.log('Response data:', responseData);
+        alert("Created Sucessfully !");
+      } catch (error) {
+        console.error('Error during POST request:', error);
+        alert(error)
+      }
+    };
+
+
+     // API PATCH
+
+    const handlePatchRequestQD = async (IO,id) => {
+   
+      try {
+        
+        const response = await fetch('http://localhost:9999/api/web/'+id, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+          body: JSON.stringify(IO),
+        });
+   
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+   
+        const responseData = await response.json();
+        // Handle the response data as needed
+        console.log('Response data:', responseData);
+        alert("Updated Sucessfully !");
+      } catch (error) {
+        console.error('Error during PATCH request:', error);
+        alert(error)
+      }
+    };
+
+    // API DELETE
+
+    const handleDeleteRequestQD = async (id) => {
+   
+      try {
+        
+        const response = await fetch('http://localhost:9999/api/web/'+id, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+        });
+   
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+   
+        const responseData = await response.json();
+        // Handle the response data as needed
+        console.log('Response data:', responseData);
+        alert(id+" Was Deleted")
+      } catch (error) {
+        console.error('Error during Delete request:', error);
+        alert(error);
+      }
+    };
+
 
 
   //- -- -- -- -- -- -- -- - -- LOG  - -- - - - - -- - - - -
@@ -172,8 +261,67 @@ function Home() {
         const responseData = await response.json();
         // Handle the response data as needed
         console.log('Response data:', responseData);
+        alert("Created Sucessfully !");
       } catch (error) {
         console.error('Error during POST request:', error);
+        alert(error)
+      }
+    };
+
+    // API PATCH
+
+    const handlePatchRequestLearn = async (IO,id) => {
+   
+      try {
+        
+        const response = await fetch('http://localhost:9999/api/learn/'+id, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+          body: JSON.stringify(IO),
+        });
+   
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+   
+        const responseData = await response.json();
+        // Handle the response data as needed
+        console.log('Response data:', responseData);
+        alert("Updated Sucessfully !");
+      } catch (error) {
+        console.error('Error during PATCH request:', error);
+        alert(error)
+      }
+    };
+
+    // API DELETE
+
+    const handleDeleteRequestLearn = async (id) => {
+   
+      try {
+        
+        const response = await fetch('http://localhost:9999/api/learn/'+id, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+        });
+   
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+   
+        const responseData = await response.json();
+        // Handle the response data as needed
+        console.log('Response data:', responseData);
+        alert(id+" Was Deleted")
+      } catch (error) {
+        console.error('Error during Delete request:', error);
+        alert(error);
       }
     };
 
@@ -252,28 +400,43 @@ function Home() {
   const opnANA=()=>{
     document.querySelector(".ANALYSIS").style="display:flex;";
     document.querySelector(".LEARN").style="display:none;";
-    document.querySelector(".PRACTICE").style="display:none;";
+    document.querySelector(".WEBPRACTICE").style="display:none;";
+    document.querySelector(".FORMPRACTICE").style="display:none;";
     document.querySelector(".STUDENT").style="display:none;";
   }
   const opnLEA=()=>{
     document.querySelector(".ANALYSIS").style="display:none;";
     document.querySelector(".LEARN").style="display:flex;";
-    document.querySelector(".PRACTICE").style="display:none;";
+    document.querySelector(".WEBPRACTICE").style="display:none;";
+    document.querySelector(".FORMPRACTICE").style="display:none;";
     document.querySelector(".STUDENT").style="display:none;";
   }
-  const opnPRA=()=>{
+  const opnWEBPRA=()=>{
     document.querySelector(".ANALYSIS").style="display:none;";
     document.querySelector(".LEARN").style="display:none";
-    document.querySelector(".PRACTICE").style="display:flex;";
+    document.querySelector(".WEBPRACTICE").style="display:flex;";
+    document.querySelector(".FORMPRACTICE").style="display:none;";
+    document.querySelector(".STUDENT").style="display:none;";
+  }
+  const opnFORMPRA=()=>{
+    document.querySelector(".ANALYSIS").style="display:none;";
+    document.querySelector(".LEARN").style="display:none";
+    document.querySelector(".WEBPRACTICE").style="display:none;";
+    document.querySelector(".FORMPRACTICE").style="display:flex;";
     document.querySelector(".STUDENT").style="display:none;";
   }
   const opnSTU=()=>{
     document.querySelector(".ANALYSIS").style="display:none;";
     document.querySelector(".LEARN").style="display:none;";
-    document.querySelector(".PRACTICE").style="display:none;";
+    document.querySelector(".WEBPRACTICE").style="display:none;";
+    document.querySelector(".FORMPRACTICE").style="display:none;";
     document.querySelector(".STUDENT").style="display:flex;";
   }
   
+ 
+
+  //= == = = == = == == LEARN = = = ==  = = = = = =
+
   const closeAll=()=>{
     document.querySelector(".CreateLearn").style="display:none;";
     document.querySelector(".EditLearn").style="display:none;";
@@ -282,6 +445,7 @@ function Home() {
     document.querySelector(".ELP1").style="display:flex;";
     document.querySelector(".Gup").style="display:none;";
   }
+
   const checkLearnGet=()=>{
     let compid=document.querySelector("#compid").value;
     for(const le of learn){
@@ -299,12 +463,75 @@ function Home() {
     handlePostRequestLearn({"Title":TitL,"Link":Lin});
     closeAll();
   }
+  const EditLearner=()=>{
+    const TitL=document.querySelector("#compTit").value;
+    const Lin=document.querySelector("#compLi").value;
+    const id=document.querySelector("#compid").value;
+    let data={"Title":TitL,"Link":Lin};
+    handlePatchRequestLearn(data,id);
+    closeAll();
+  }
+  const DeleteLearner=()=>{
+    const id=document.querySelector("#Ldelid").value;
+    handleDeleteRequestLearn(id);
+    closeAll();
+  }
   const CLopn=()=>{document.querySelector(".CreateLearn").style="display:flex;";
   document.querySelector(".Gup").style="display:flex;"}
   const ELopn=()=>{document.querySelector(".EditLearn").style="display:flex;";
   document.querySelector(".Gup").style="display:flex;"}
   const DLopn=()=>{document.querySelector(".DeleteLearn").style="display:flex;";
   document.querySelector(".Gup").style="display:flex;"}
+
+  // = == = == ==  == == = = ==  == = = == = = =  = == = == = = == = = = = = = ==
+
+  //= == = = == = == == QD = = = ==  = = = = = =
+
+  const closeAllQ=()=>{
+    document.querySelector(".CreateLearnQ").style="display:none;";
+    document.querySelector(".EditLearnQ").style="display:none;";
+    document.querySelector(".DeleteLearnQ").style="display:none;";
+    document.querySelector(".ELP2Q").style="display:none;";
+    document.querySelector(".ELP1Q").style="display:flex;";
+    document.querySelector(".GupQ").style="display:none;";
+  }
+
+  const checkQDGet=()=>{
+    let compid=document.querySelector("#compidQ").value;
+    for(const le of QD){
+      if(le._id==compid){
+        document.querySelector(".ELP2Q").style="display:flex;";
+        document.querySelector(".ELP1Q").style="display:none;";
+        document.querySelector("#compLiQ").value=JSON.stringify(le);
+      }
+    }
+  }
+  const CreateQD=()=>{
+    const TitL=document.querySelector(".creTiQ").value;
+    const Lin=document.querySelector(".creLiQ").value;
+    handlePostRequestQD({"Title":TitL,"Link":Lin});
+    closeAllQ();
+  }
+  const EditQD=()=>{
+    const Lin=document.querySelector("#compLiQ").value;
+    const id=document.querySelector("#compidQ").value;
+    let data=JSON.parse(Lin);
+    handlePatchRequestQD(data,id);
+    closeAllQ();
+  }
+  const DeleteQD=()=>{
+    const id=document.querySelector("#LdelidQ").value;
+    handleDeleteRequestQD(id);
+    closeAllQ();
+  }
+  const CQopn=()=>{document.querySelector(".CreateLearnQ").style="display:flex;";
+  document.querySelector(".GupQ").style="display:flex;"}
+  const EQopn=()=>{document.querySelector(".EditLearnQ").style="display:flex;";
+  document.querySelector(".GupQ").style="display:flex;"}
+  const DQopn=()=>{document.querySelector(".DeleteLearnQ").style="display:flex;";
+  document.querySelector(".GupQ").style="display:flex;"}
+
+  // = == = == ==  == == = = ==  == = = == = = =  = == = == = = == = = = = = = ==
   
   return (
     <>
@@ -316,7 +543,8 @@ function Home() {
           <div className='lo ki'>
             <button onClick={opnANA}>Analysis</button>
             <button onClick={opnLEA}>Learn</button>
-            <button onClick={opnPRA}>Practice</button>
+            <button onClick={opnWEBPRA}>Web Practice</button>
+            <button onClick={opnFORMPRA}>Form Practice</button>
             <button onClick={opnSTU}>Student</button>
           </div>
         </div>
@@ -416,7 +644,7 @@ function Home() {
               <input type='text' id="compTit"></input>
               <input type='text' id="compLi"></input>
               <div className='ButStack'>
-                <button>Edit</button>
+                <button onClick={EditLearner}>Edit</button>
                 <button onClick={closeAll}>Cancel</button>
               </div>
             </div>
@@ -424,9 +652,9 @@ function Home() {
           <div className='DeleteLearn'>
             <div className='DL'>
               <p>* Ensure That The ID Listed In The Tabel.</p>
-              <input type='text' placeholder='Enter ID Of Component' id='compid'></input>
+              <input type='text' placeholder='Enter ID Of Component' id='Ldelid'></input>
               <div className='ButStack'>
-                <button onClick={checkLearnGet}>Delete</button>
+                <button onClick={DeleteLearner}>Delete</button>
                 <button onClick={closeAll}>Cancel</button>
               </div>
             </div>
@@ -435,7 +663,58 @@ function Home() {
 
           </a>
         </div>
-        <div className='PRACTICE'>
+
+        {/* WEBPRACTICE */}
+
+        <div className='WEBPRACTICE'>
+        <div className='ButStack'>
+            <button onClick={CQopn}>Create</button>
+            <button onClick={EQopn}>Edit</button>
+            <button onClick={DQopn}>Delete</button>
+          </div>
+          <WebTable/>
+          <div className='CreateLearnQ'>
+            <p>*Ensure That The Link Get From Embeded Code.</p>
+            <input type='text' placeholder='Title' className='creTiQ'></input>
+            <input type='text' placeholder='Link' className='creLiQ'></input>
+            <div className='ButStack'>
+              <button onClick={CreateQD}>Create</button>
+              <button onClick={closeAllQ}>Cancel</button>
+            </div>
+          </div>
+          <div className='EditLearnQ'>
+            <div className='ELP1Q'>
+              <p>* Ensure That The ID Listed In The Tabel.</p>
+              <input type='text' placeholder='Enter ID Of Component' id='compidQ'></input>
+              <div className='ButStack'>
+                <button onClick={checkQDGet}>Get</button>
+                <button onClick={closeAllQ}>Cancel</button>
+              </div>
+            </div>
+            <div className='ELP2Q'>
+              <p>Edit Data</p>
+              <input type='text' id="compLiQ"></input>
+              <div className='ButStack'>
+                <button onClick={EditQD}>Edit</button>
+                <button onClick={closeAllQ}>Cancel</button>
+              </div>
+            </div>
+          </div>
+          <div className='DeleteLearnQ'>
+            <div className='DLQ'>
+              <p>* Ensure That The ID Listed In The Tabel.</p>
+              <input type='text' placeholder='Enter ID Of Component' id='LdelidQ'></input>
+              <div className='ButStack'>
+                <button onClick={DeleteQD}>Delete</button>
+                <button onClick={closeAllQ}>Cancel</button>
+              </div>
+            </div>
+          </div>
+          <a className='GupQ' onClick={closeAllQ}>
+
+          </a>
+        </div>
+        <div className='FORMPRACTICE'>
 
         </div>
         <div className='STUDENT'>

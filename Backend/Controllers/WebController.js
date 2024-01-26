@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose")
 const WebModel = require("../Models/WebModel.js")
 
 //   CRED
