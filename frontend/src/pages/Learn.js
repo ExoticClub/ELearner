@@ -1,8 +1,18 @@
 import '../style/Learn.css';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import { useGlobal } from '../components/GlobalContext';
 
 function Video() {
+
+  let logInfo;
+  const { globalVariable, setGlobalVariable } = useGlobal();
+   let io=globalVariable;
+   logInfo=io.split("$");
+
+  if(logInfo[0]==="404"){
+    window.location.href = '/';
+  }
 
   // API Fetch
 

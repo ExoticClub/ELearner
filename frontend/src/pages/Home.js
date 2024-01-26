@@ -5,8 +5,15 @@ import "../style/Components.css";
 import { useGlobal } from '../components/GlobalContext';
 
 function Home() {
-  const {globalVariable} = useGlobal();
-  console.log(globalVariable);
+  
+  let logInfo;
+  const { globalVariable, setGlobalVariable } = useGlobal();
+   let io=globalVariable;
+   logInfo=io.split("$");
+
+  if(logInfo[0]==="404"){
+    window.location.href = '/';
+  }
   
   return (
     <>

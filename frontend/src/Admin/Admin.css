@@ -48,7 +48,7 @@
     width:100%;
     display: flex;
     justify-content: space-evenly;
-    height: 40px;
+    height: 60px;
     align-items: center;
 }
 .topbst{
@@ -63,6 +63,7 @@
 .bsttab p,.topbst p{
     width:150px;
     text-align: center;
+    overflow-wrap: break-word;
 }
 
 .ki button{

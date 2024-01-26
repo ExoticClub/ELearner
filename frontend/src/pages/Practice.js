@@ -13,7 +13,14 @@ function Practice() {
    let io=globalVariable;
    let ios=io.split("$");
 
-   console.log(globalVariable);
+   let logInfo;
+   let ioe=globalVariable;
+   logInfo=ioe.split("$");
+
+  if(logInfo[0]==="404"){
+    window.location.href = '/';
+  }
+
      
     return (
     <>

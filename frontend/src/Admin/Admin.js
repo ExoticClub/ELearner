@@ -544,12 +544,18 @@ function Home() {
       
       if (NowC.length > 0) {
         const NowMax = NowC.reduce((max, curr) => (curr.MarkGet > max.MarkGet ? curr : max));
+        for(let q of QD){
+          if(NowMax.TestId==q._id){
+            NowMax.Test=q.Title;
+          }
+        }
         Max.push(NowMax);
       } else {
         console.warn(`No matching data found for TestId: ${NowId}`);
       }
     }
     bst = Max;
+    
   }
   function wstf() {
     const Max = [];
@@ -559,6 +565,11 @@ function Home() {
       
       if (NowC.length > 0) {
         const NowMax = NowC.reduce((max, curr) => (curr.MarkGet < max.MarkGet ? curr : max));
+        for(let q of QD){
+          if(NowMax.TestId==q._id){
+            NowMax.Test=q.Title;
+          }
+        }
         Max.push(NowMax);
       } else {
         console.warn(`No matching data found for TestId: ${NowId}`);
@@ -958,7 +969,7 @@ function Home() {
                 </li>
                 {bst.map((data) => (
                   <li className='bsttab'>
-                    <p>{data.TestId}</p>
+                    <p>{data.Test}</p>
                     <p>{data.RegNo}</p>
                     <p>{data.MarkGet}</p>
                   </li>
@@ -975,7 +986,7 @@ function Home() {
                 </li>
                 {wst.map((data) => (
                   <li className='bsttab'>
-                    <p>{data.TestId}</p>
+                    <p>{data.Test}</p>
                     <p>{data.RegNo}</p>
                     <p>{data.MarkGet}</p>
                   </li>

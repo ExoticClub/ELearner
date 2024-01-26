@@ -9,6 +9,10 @@ function PracticeModule({ TId, logInfo }) {
   console.log(TId)
    // API Fetch
 
+   if(logInfo[0]==="404"){
+    window.location.href = '/';
+  }
+
    let ReqData=[{"Id":"404","Title":"No Data","Question":["No Data"],"Options":[["none"]],"Answer":["none"],"Author":"None","updatedAt":"404T565"},{"Id":"404","Title":"No Data","Question":["No Data"],"Options":[["none"]],"Answer":["none"],"Author":"None","updatedAt":"404T565"},{"Id":"404","Title":"No Data","Question":["No Data"],"Options":[["none"]],"Answer":["none"],"Author":"None","updatedAt":"404T565"}]
 
    const [WebData, setWebData] = useState(ReqData);

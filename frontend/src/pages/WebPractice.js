@@ -14,6 +14,10 @@ function WebPractice() {
    let io=globalVariable;
    logInfo=io.split("$");
 
+  if(logInfo[0]==="404"){
+    window.location.href = '/';
+  }
+
 
   // API Fetch
 
