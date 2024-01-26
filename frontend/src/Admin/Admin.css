@@ -85,7 +85,7 @@
     justify-content: space-evenly;
     align-items:center;
 }
-.LEARN,.WEBPRACTICE,.FORMPRACTICE{
+.LEARN,.WEBPRACTICE,.FORMPRACTICE,.STUDENT{
     flex-direction: column;
 }
 
@@ -124,7 +124,7 @@
     
   }
 
-  .CreateLearn,.CreateLearnQ,.CreateLearnF{
+  .CreateLearn,.CreateLearnQ,.CreateLearnF,.SearchLog{
     position: fixed;
     top:20vh;
     background-color:#c2c2c2;
@@ -137,7 +137,7 @@
     border-radius: 20px;
     z-index:2;
   }
-  .CreateLearn input,.CreateLearnQ input,.CreateLearnF input{
+  .CreateLearn input,.CreateLearnQ input,.CreateLearnF input,.SearchLog input{
     height: 30px;
     width:300px;
     border-radius: 10px;
@@ -145,7 +145,7 @@
     font-size: 12pt;
   }
 
-  .EditLearn,.EditLearnQ,.EditLearnF{
+  .EditLearn,.EditLearnQ,.EditLearnF,.EditLearnLo{
     position: fixed;
     top:20vh;
     background-color:#c2c2c2;
@@ -158,7 +158,7 @@
     border-radius: 20px; 
     z-index:2;
   }
-  .DeleteLearn,.DeleteLearnQ,.DeleteLearnF{
+  .DeleteLearn,.DeleteLearnQ,.DeleteLearnF,.DeleteLearnLo{
     position: fixed;
     top:20vh;
     background-color:#c2c2c2;
@@ -173,21 +173,21 @@
 
   }
 
-  .ELP1,.ELP1Q,.ELP1F{
+  .ELP1,.ELP1Q,.ELP1F,.ELP1Lo{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     height:100%;
   }
-  .ELP1 input,.ELP2 input,.DL input,.ELP1Q input,.ELP2Q input,.DLQ input,.ELP1F input,.ELP2F input,.DLF input{
+  .ELP1 input,.ELP2 input,.DL input,.ELP1Q input,.ELP2Q input,.DLQ input,.ELP1F input,.ELP2F input,.DLF input,.ELP1Lo input,.ELP2Lo input,.DLLo input{
     width:300px;
     height: 20px;
     padding: 20px;
     border-radius: 10px;
   }
 
-  .ELP2,.ELP2Q,.ELP2F{
+  .ELP2,.ELP2Q,.ELP2F,.ELP2Lo{
     display: none;
     flex-direction: column;
     height: 100%;
@@ -196,7 +196,7 @@
     font-size: 15pt;
   }
 
-  .DL,.DLQ,.DLF{
+  .DL,.DLQ,.DLF,.DLLo{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -204,7 +204,7 @@
     height:100%;
   }
 
-  .Gup,.GupQ,.GupF{
+  .Gup,.GupQ,.GupF,.GupLo{
     background-color: rgba(0,0, 0, 0.8);
     position: fixed;
     top:0;
@@ -213,4 +213,9 @@
     right: 0;
     z-index: 1;
     display: none;
+  }
+  .rsl{
+    background-color: red;
+    width:280px;
+    height:100px;
   }

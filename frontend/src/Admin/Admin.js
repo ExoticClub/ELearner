@@ -5,9 +5,12 @@ import { useState,useEffect } from 'react';
 import LearnTable from "./LearnTable";
 import WebTable from "./WebTable";
 import FormTable from "./FormTable";
+import LogTable from "./LogTable";
 
 
 function Home() {
+
+  // + + + + + + + ++ +  + +  ++ +  ++ CRED + ++ + + + ++ + ++ +  ++ + + + + ++
 
   // - - - - --- ---- -- QD - -- --- - - -- - - -
 
@@ -47,7 +50,7 @@ function Home() {
       "Author": "Luna",
       "createdAt": "2024-01-23T09:35:58.796Z",
       "updatedAt": "2024-01-23T09:35:58.796Z",
-  }];
+    }];
      const [QD, setQD] = useState(ReqDataQ);
    
      useEffect(() => {
@@ -185,6 +188,93 @@ function Home() {
     }, []);
   
     console.log(Log);
+
+  // API POST
+
+  const handlePostRequestLog = async (IO) => {
+   
+    try {
+      
+      const response = await fetch('http://localhost:9999/api/log', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+        body: JSON.stringify(IO),
+      });
+ 
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+ 
+      const responseData = await response.json();
+      // Handle the response data as needed
+      console.log('Response data:', responseData);
+      alert("Created Sucessfully !");
+    } catch (error) {
+      console.error('Error during POST request:', error);
+      alert(error)
+    }
+  };
+
+
+   // API PATCH
+
+  const handlePatchRequestLog = async (IO,id) => {
+ 
+    try {
+      
+      const response = await fetch('http://localhost:9999/api/log/'+id, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+        body: JSON.stringify(IO),
+      });
+ 
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+ 
+      const responseData = await response.json();
+      // Handle the response data as needed
+      console.log('Response data:', responseData);
+      alert("Updated Sucessfully !");
+    } catch (error) {
+      console.error('Error during PATCH request:', error);
+      alert(error)
+    }
+  };
+
+  // API DELETE
+
+  const handleDeleteRequestLog = async (id) => {
+ 
+    try {
+      
+      const response = await fetch('http://localhost:9999/api/log/'+id, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+ 
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+ 
+      const responseData = await response.json();
+      // Handle the response data as needed
+      console.log('Response data:', responseData);
+      alert(id+" Was Deleted")
+    } catch (error) {
+      console.error('Error during Delete request:', error);
+      alert(error);
+    }
+  };
 // - - - - --- ---- -- FORM - -- --- - - -- - - -
 
      // API Fetch
@@ -440,6 +530,8 @@ function Home() {
 
     //- -- - - -- - - - --- - 
 
+// + + + ++ + ++ + ++ + ++ + + ++ ++ + ++ + ++ + + + ++ ++ + + ++ + + ++ + + + + + + + + ++
+
   let bst=[{"Regno":"404","Mark":0,"TestId":"You"}];
   let wst=[{"Regno":"404","Mark":0,"TestId":"You"}];
   let chartData=[100,100,100,100,100,100,100,100];
@@ -589,12 +681,18 @@ function Home() {
     handleDeleteRequestLearn(id);
     closeAll();
   }
-  const CLopn=()=>{document.querySelector(".CreateLearn").style="display:flex;";
-  document.querySelector(".Gup").style="display:flex;"}
-  const ELopn=()=>{document.querySelector(".EditLearn").style="display:flex;";
-  document.querySelector(".Gup").style="display:flex;"}
-  const DLopn=()=>{document.querySelector(".DeleteLearn").style="display:flex;";
-  document.querySelector(".Gup").style="display:flex;"}
+  const CLopn=()=>{
+    document.querySelector(".CreateLearn").style="display:flex;";
+  document.querySelector(".Gup").style="display:flex;"
+}
+  const ELopn=()=>{
+    document.querySelector(".EditLearn").style="display:flex;";
+  document.querySelector(".Gup").style="display:flex;"
+}
+  const DLopn=()=>{
+    document.querySelector(".DeleteLearn").style="display:flex;";
+  document.querySelector(".Gup").style="display:flex;"
+}
 
   // = == = == ==  == == = = ==  == = = == = = =  = == = == = = == = = = = = = ==
 
@@ -637,12 +735,18 @@ function Home() {
     handleDeleteRequestQD(id);
     closeAllQ();
   }
-  const CQopn=()=>{document.querySelector(".CreateLearnQ").style="display:flex;";
-  document.querySelector(".GupQ").style="display:flex;"}
-  const EQopn=()=>{document.querySelector(".EditLearnQ").style="display:flex;";
-  document.querySelector(".GupQ").style="display:flex;"}
-  const DQopn=()=>{document.querySelector(".DeleteLearnQ").style="display:flex;";
-  document.querySelector(".GupQ").style="display:flex;"}
+  const CQopn=()=>{
+    document.querySelector(".CreateLearnQ").style="display:flex;";
+  document.querySelector(".GupQ").style="display:flex;"
+}
+  const EQopn=()=>{
+    document.querySelector(".EditLearnQ").style="display:flex;";
+  document.querySelector(".GupQ").style="display:flex;"
+}
+  const DQopn=()=>{
+    document.querySelector(".DeleteLearnQ").style="display:flex;";
+  document.querySelector(".GupQ").style="display:flex;"
+}
 
   // = == = == ==  == == = = ==  == = = == = = =  = == = == = = == = = = = = = ==
   
@@ -687,12 +791,83 @@ function Home() {
     handleDeleteRequestForm(id);
     closeAllF();
   }
-  const CFopn=()=>{document.querySelector(".CreateLearnF").style="display:flex;";
-  document.querySelector(".GupF").style="display:flex;"}
-  const EFopn=()=>{document.querySelector(".EditLearnF").style="display:flex;";
-  document.querySelector(".GupF").style="display:flex;"}
-  const DFopn=()=>{document.querySelector(".DeleteLearnF").style="display:flex;";
-  document.querySelector(".GupF").style="display:flex;"}
+  const CFopn=()=>{
+    document.querySelector(".CreateLearnF").style="display:flex;";
+  document.querySelector(".GupF").style="display:flex;"
+}
+  const EFopn=()=>{
+    document.querySelector(".EditLearnF").style="display:flex;";
+  document.querySelector(".GupF").style="display:flex;"
+}
+  const DFopn=()=>{
+    document.querySelector(".DeleteLearnF").style="display:flex;";
+  document.querySelector(".GupF").style="display:flex;"
+}
+
+  // = == = == ==  == == = = ==  == = = == = = =  = == = == = = == = = = = = = ==
+
+   //= == = = == = == == LOG = = = ==  = = = = = =
+
+   const closeAllLog=()=>{
+    document.querySelector(".SearchLog").style="display:none;";
+    document.querySelector(".EditLearnLo").style="display:none;";
+    document.querySelector(".DeleteLearnLo").style="display:none;";
+    document.querySelector(".ELP2Lo").style="display:none;";
+    document.querySelector(".ELP1Lo").style="display:flex;";
+    document.querySelector(".GupLo").style="display:none;";
+  }
+
+  const checkLogGet=()=>{
+    let compid=document.querySelector("#compidLo").value;
+    for(const le of Log){
+      if(le._id==compid){
+        document.querySelector(".ELP2Lo").style="display:flex;";
+        document.querySelector(".ELP1Lo").style="display:none;";
+        document.querySelector("#EReg").value=le.RegNo;
+        document.querySelector("#EPass").value=le.Password;
+        document.querySelector("#EDep").value=le.Department;
+        document.querySelector("#EName").value=le.Name;
+      }
+    }
+  }
+  const SearchLog=()=>{
+    const SReg=document.querySelector(".SReg").value;
+    for(const l of Log){
+      if(l.RegNo==SReg){
+        console.log(l);
+        document.querySelector(".VName").innerHTML="Name : "+l.Name;
+        document.querySelector(".VDep").innerHTML="Department : "+l.Department;
+        document.querySelector(".VId").innerHTML="ID : "+l._id;
+      }
+    }
+  }
+  const EditLog=()=>{
+    const EReg=document.querySelector("#EReg").value;
+    const EDep=document.querySelector("#EDep").value;
+    const EName=document.querySelector("#EName").value;
+    const EPass=document.querySelector("#EPass").value;
+    const id=document.querySelector("#compidLo").value;
+    let data={"Name":EName,"RegNo":EReg,"Department":EDep,"Password":EPass};
+    handlePatchRequestLog(data,id);
+    closeAllLog();
+  }
+  const DeleteLog=()=>{
+    const id=document.querySelector("#LdelidLo").value;
+    handleDeleteRequestLog(id);
+    closeAllLog();
+  }
+  const SLoopn=()=>{
+    document.querySelector(".SearchLog").style="display:flex;";
+  document.querySelector(".GupLo").style="display:flex;"
+}
+  const ELoopn=()=>{
+    document.querySelector(".EditLearnLo").style="display:flex;";
+  document.querySelector(".GupLo").style="display:flex;"
+}
+  const DLoopn=()=>{
+    document.querySelector(".DeleteLearnLo").style="display:flex;";
+  document.querySelector(".GupLo").style="display:flex;"
+}
 
   // = == = == ==  == == = = ==  == = = == = = =  = == = == = = == = = = = = = ==
   
@@ -937,6 +1112,63 @@ function Home() {
         {/* STUDENT */}
 
         <div className='STUDENT'>
+
+          <div className='ButStack'>
+            <button onClick={SLoopn}>Search</button>
+            <button onClick={ELoopn}>Edit</button>
+            <button onClick={DLoopn}>Delete</button>
+          </div>
+
+          <LogTable/>
+
+          <div className='SearchLog'>
+            <p>*Ensure That The Link Get From Embeded Code.</p>
+            <input type='text' placeholder='Title' className='SReg'></input>
+            <div className='rsl'>
+              <p className='VName'>Name : </p>
+              <p className='VDep'>Department : </p>
+              <p className='VId'>ID : </p>
+            </div>
+            <div className='ButStack'>
+              <button onClick={SearchLog}>Search</button>
+              <button onClick={closeAllLog}>Close</button>
+            </div>
+          </div>
+
+          <div className='EditLearnLo'>
+            <div className='ELP1Lo'>
+              <p>* Ensure That The ID Listed In The Tabel.</p>
+              <input type='text' placeholder='Enter ID Of Component' id='compidLo'></input>
+              <div className='ButStack'>
+                <button onClick={checkLogGet}>Get</button>
+                <button onClick={closeAllLog}>Cancel</button>
+              </div>
+            </div>
+            <div className='ELP2Lo'>
+              <p>Edit Data</p>
+              <input type='text' id="EReg"></input>
+              <input type='text' id="EName"></input>
+              <input type='text' id="EDep"></input>
+              <input type='text' id="EPass"></input>
+              <div className='ButStack'>
+                <button onClick={EditLog}>Edit</button>
+                <button onClick={closeAllLog}>Cancel</button>
+              </div>
+            </div>
+          </div>
+          <div className='DeleteLearnLo'>
+            <div className='DLLo'>
+              <p>* Ensure That The ID Listed In The Tabel.</p>
+              <input type='text' placeholder='Enter ID Of Component' id='LdelidLo'></input>
+              <div className='ButStack'>
+                <button onClick={DeleteLog}>Delete</button>
+                <button onClick={closeAllLog}>Cancel</button>
+              </div>
+            </div>
+          </div>
+          <a className='GupLo' onClick={closeAllLog}>
+
+          </a>
 
         </div>
 
