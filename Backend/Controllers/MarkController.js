@@ -1,4 +1,6 @@
-const MarkModel = require("../Models/MarkModel.js")
+const MarkModel = require("../Models/MarkModel.js");
+const { default: mongoose } = require("mongoose")
+
 
 //   CRED
 

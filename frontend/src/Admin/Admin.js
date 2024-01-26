@@ -4,6 +4,7 @@ import "./Admin.css";
 import { useState,useEffect } from 'react';
 import LearnTable from "./LearnTable";
 import WebTable from "./WebTable";
+import FormTable from "./FormTable";
 
 
 function Home() {
@@ -184,7 +185,119 @@ function Home() {
     }, []);
   
     console.log(Log);
+// - - - - --- ---- -- FORM - -- --- - - -- - - -
 
+     // API Fetch
+
+     let ReqDataF=[{}];
+     const [form, setform] = useState(ReqDataF);
+   
+     useEffect(() => {
+       const apiUrl = 'http://localhost:9999/api/forms';
+     
+       fetch(apiUrl)
+         .then(response => {
+           if (!response.ok) {
+             throw new Error(`HTTP error! Status: ${response.status}`);
+           }
+           return response.json();
+         })
+         .then(resultData => {
+           setform(resultData);
+         })
+         .catch(error => {
+           console.error('Error fetching data:', error);
+         });
+     }, []);
+   
+     console.log(form);
+
+     // API POST
+
+    const handlePostRequestForm = async (IO) => {
+   
+      try {
+        
+        const response = await fetch('http://localhost:9999/api/forms', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+          body: JSON.stringify(IO),
+        });
+   
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+   
+        const responseData = await response.json();
+        // Handle the response data as needed
+        console.log('Response data:', responseData);
+        alert("Created Sucessfully !");
+      } catch (error) {
+        console.error('Error during POST request:', error);
+        alert(error)
+      }
+    };
+
+
+     // API PATCH
+
+    const handlePatchRequestForm = async (IO,id) => {
+   
+      try {
+        
+        const response = await fetch('http://localhost:9999/api/forms/'+id, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+          body: JSON.stringify(IO),
+        });
+   
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+   
+        const responseData = await response.json();
+        // Handle the response data as needed
+        console.log('Response data:', responseData);
+        alert("Updated Sucessfully !");
+      } catch (error) {
+        console.error('Error during PATCH request:', error);
+        alert(error)
+      }
+    };
+
+    // API DELETE
+
+    const handleDeleteRequestForm = async (id) => {
+   
+      try {
+        
+        const response = await fetch('http://localhost:9999/api/forms/'+id, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+        });
+   
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+   
+        const responseData = await response.json();
+        // Handle the response data as needed
+        console.log('Response data:', responseData);
+        alert(id+" Was Deleted")
+      } catch (error) {
+        console.error('Error during Delete request:', error);
+        alert(error);
+      }
+    };
 // - - - -- -- - - -- - - ---- MARK  -- - - - - - -- -- - -- 
 
    // API Fetch
@@ -533,6 +646,56 @@ function Home() {
 
   // = == = == ==  == == = = ==  == = = == = = =  = == = == = = == = = = = = = ==
   
+  //= == = = == = == == Form = = = ==  = = = = = =
+
+  const closeAllF=()=>{
+    document.querySelector(".CreateLearnF").style="display:none;";
+    document.querySelector(".EditLearnF").style="display:none;";
+    document.querySelector(".DeleteLearnF").style="display:none;";
+    document.querySelector(".ELP2F").style="display:none;";
+    document.querySelector(".ELP1F").style="display:flex;";
+    document.querySelector(".GupF").style="display:none;";
+  }
+
+  const checkFormGet=()=>{
+    let compid=document.querySelector("#compidF").value;
+    for(const le of form){
+      if(le._id==compid){
+        document.querySelector(".ELP2F").style="display:flex;";
+        document.querySelector(".ELP1F").style="display:none;";
+        document.querySelector("#compTitF").value=le.Title;
+        document.querySelector("#compLiF").value=le.Link;
+      }
+    }
+  }
+  const CreateForm=()=>{
+    const TitL=document.querySelector(".creTiF").value;
+    const Lin=document.querySelector(".creLiF").value;
+    handlePostRequestForm({"Title":TitL,"Link":Lin});
+    closeAllF();
+  }
+  const EditForm=()=>{
+    const TitL=document.querySelector("#compTitF").value;
+    const Lin=document.querySelector("#compLiF").value;
+    const id=document.querySelector("#compidF").value;
+    let data={"Title":TitL,"Link":Lin};
+    handlePatchRequestForm(data,id);
+    closeAllF();
+  }
+  const DeleteForm=()=>{
+    const id=document.querySelector("#LdelidF").value;
+    handleDeleteRequestForm(id);
+    closeAllF();
+  }
+  const CFopn=()=>{document.querySelector(".CreateLearnF").style="display:flex;";
+  document.querySelector(".GupF").style="display:flex;"}
+  const EFopn=()=>{document.querySelector(".EditLearnF").style="display:flex;";
+  document.querySelector(".GupF").style="display:flex;"}
+  const DFopn=()=>{document.querySelector(".DeleteLearnF").style="display:flex;";
+  document.querySelector(".GupF").style="display:flex;"}
+
+  // = == = == ==  == == = = ==  == = = == = = =  = == = == = = == = = = = = = ==
+  
   return (
     <>
       <div className='landing'>
@@ -614,6 +777,10 @@ function Home() {
 
           </div>
         </div>
+
+        {/* LEARN */}
+
+
         <div className='LEARN'>
           <div className='ButStack'>
             <button onClick={CLopn}>Create</button>
@@ -714,9 +881,61 @@ function Home() {
 
           </a>
         </div>
-        <div className='FORMPRACTICE'>
 
+        {/* FORMPRACTICE */}
+
+        <div className='FORMPRACTICE'>
+        <div className='ButStack'>
+            <button onClick={CFopn}>Create</button>
+            <button onClick={EFopn}>Edit</button>
+            <button onClick={DFopn}>Delete</button>
+          </div>
+          <FormTable/>
+          <div className='CreateLearnF'>
+            <p>*Ensure That The Link Get From Embeded Code.</p>
+            <input type='text' placeholder='Title' className='creTiF'></input>
+            <input type='text' placeholder='Link' className='creLiF'></input>
+            <div className='ButStack'>
+              <button onClick={CreateForm}>Create</button>
+              <button onClick={closeAllF}>Cancel</button>
+            </div>
+          </div>
+          <div className='EditLearnF'>
+            <div className='ELP1F'>
+              <p>* Ensure That The ID Listed In The Tabel.</p>
+              <input type='text' placeholder='Enter ID Of Component' id='compidF'></input>
+              <div className='ButStack'>
+                <button onClick={checkFormGet}>Get</button>
+                <button onClick={closeAllF}>Cancel</button>
+              </div>
+            </div>
+            <div className='ELP2F'>
+              <p>Edit Data</p>
+              <input type='text' id="compTitF"></input>
+              <input type='text' id="compLiF"></input>
+              <div className='ButStack'>
+                <button onClick={EditForm}>Edit</button>
+                <button onClick={closeAllF}>Cancel</button>
+              </div>
+            </div>
+          </div>
+          <div className='DeleteLearnF'>
+            <div className='DLF'>
+              <p>* Ensure That The ID Listed In The Tabel.</p>
+              <input type='text' placeholder='Enter ID Of Component' id='LdelidF'></input>
+              <div className='ButStack'>
+                <button onClick={DeleteForm}>Delete</button>
+                <button onClick={closeAllF}>Cancel</button>
+              </div>
+            </div>
+          </div>
+          <a className='GupF' onClick={closeAllF}>
+
+          </a>
         </div>
+
+        {/* STUDENT */}
+
         <div className='STUDENT'>
 
         </div>

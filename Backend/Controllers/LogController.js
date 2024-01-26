@@ -1,4 +1,6 @@
-const LogModel = require("../Models/LogModel.js")
+const LogModel = require("../Models/LogModel.js");
+const { default: mongoose } = require("mongoose")
+
 
 //   CRED
 
