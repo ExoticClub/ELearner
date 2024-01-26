@@ -2,6 +2,7 @@ import '../style/Login.css';
 import React, { useState, useEffect } from 'react';
 import { useGlobal } from '../components/GlobalContext';
 import { useNavigate } from 'react-router-dom';
+import Admin from "../Admin.json"
 
 const LoginPage = () => {
 
@@ -61,7 +62,7 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
 
-  const { globalVariable,setGlobalVariable } = useGlobal();
+  const { setGlobalVariable } = useGlobal();
   const [SClass, setSClass] = useState("None");
   const [Reg, setReg] = useState('');
   const [Password, setPassword] = useState('');
@@ -78,14 +79,14 @@ const LoginPage = () => {
     const SPassCon = document.getElementById('SPassCon').value;
 
     if (SPass === SPassCon) {
-      if(SName!=""){
-      if(SReg.length>4&&SReg.slice(0,4)=="9536"){
-      if (SClass!="None"){
+      if(SName!==""){
+      if(SReg.length>4&&SReg.slice(0,4)==="9536"){
+      if (SClass!=="None"){
       for(let i=0;i<Log.length;i++){
-      if (Log[i].RegNo==SReg) {
+      if (Log[i].RegNo===SReg) {
         document.querySelector(".Messager").style="display:flex;";
         document.querySelector(".Messager p").innerHTML="The Account Already Exits !<br><br>Click Anywhere To Continue...";
-      } else if(SReg != "RITAdmin"){
+      } else{
         handlePostRequest({"Name":SName,"RegNo":SReg,"Department":SClass,"Password":SPass})
         document.getElementById('register').classList.add("active");
         document.getElementById('login').classList.remove("active");
@@ -117,19 +118,21 @@ const LoginPage = () => {
     event.preventDefault();
 
     for (let i = 0; i < Log.length; i++) {
-      if (Log[i].RegNo == Reg) {
-        if (Log[i].Password == Password) {
-          console.log("Welcome");
-          setGlobalVariable(Log[i].RegNo + "$" + Log[i].Name);
-          navigate("/Home")
+      if (Log[i].RegNo === Reg) {
+        if (Log[i].Password === Password) {
+          if (Admin.id.includes(Reg)) {
+            setGlobalVariable(Log[i].RegNo + "$" + Log[i].Name);
+            navigate("/Admin")
+          }else{
+            console.log("Welcome");
+            setGlobalVariable(Log[i].RegNo + "$" + Log[i].Name);
+            navigate("/Home")
+          }
         } else {
           document.querySelector(".Messager").style="display:flex;";
           document.querySelector(".Messager p").innerHTML="Password Incorrect!<br><br>If You Forget The Password Please Contact Faculties...<br>Click Anywhere To Continue...";
         }
-      } else if (Reg === "RITAdmin" && Password === "IAm") {
-        document.querySelector(".pannel").style.display = "flex";
-        document.querySelector(".Page").style.display = "none";
-      }else{
+      } else{
         document.querySelector(".Messager").style="display:flex;";
         document.querySelector(".Messager p").innerHTML="No Account Found, Please SignUp !<br><br>Click Anywhere To Continue...";
       }

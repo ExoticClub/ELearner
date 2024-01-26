@@ -6,9 +6,24 @@ import LearnTable from "./LearnTable";
 import WebTable from "./WebTable";
 import FormTable from "./FormTable";
 import LogTable from "./LogTable";
+import Admin from "../Admin.json";
+import { useGlobal } from '../components/GlobalContext';
 
 
 function Home() {
+
+  let logInfo;
+  const { globalVariable, setGlobalVariable } = useGlobal();
+   let io=globalVariable;
+   logInfo=io.split("$");
+
+  if(logInfo[0]==="404"){
+    window.location.href = '/';
+  }
+
+  if(!Admin.id.includes(logInfo[0])){
+    window.location.href = '/';
+  }
 
   // + + + + + + + ++ +  + +  ++ +  ++ CRED + ++ + + + ++ + ++ +  ++ + + + + ++
 
