@@ -717,10 +717,41 @@ function Home() {
       }
     }
   }
+
+  const [n,setn]=useState(0);
+
+  const genV=()=>{
+    setn(document.querySelector(".CreNu").value)
+  }
+
+  const componentsArray = Array.from({ length: n }, (v, i) => 
+  <div>
+    <p>Question {i+1}</p>
+    <input type='text' placeholder='Enter Question' className={'Q'+i}></input>
+    <input type='text' placeholder='Enter Options Sperated By $' className={'O'+i}></input>
+    <input type='number' placeholder='Enter Answer Number' className={'A'+i}></input>
+  </div>);
+
   const CreateQD=()=>{
     const TitL=document.querySelector(".creTiQ").value;
-    const Lin=document.querySelector(".creLiQ").value;
-    handlePostRequestQD({"Title":TitL,"Link":Lin});
+    const AuL=document.querySelector(".creAuQ").value;
+    const QL=[];
+    const OL=[];
+    const AL=[];
+    for(let i=0;i<n;i++){
+      const xQ=document.querySelector(".Q"+i).value;
+      const xO=document.querySelector(".O"+i).value.split("$");
+      const xAy=document.querySelector(".A"+i).value;
+      let xA;
+      if(xO[xAy-1]){
+        xA=xO[xAy-1]
+        QL.push(xQ);
+        OL.push(xO);
+        AL.push(xA);
+      }
+    }
+    let data={"Title":TitL,"Author":AuL,"Question":QL,"Answer":AL,"Options":OL}
+    handlePostRequestQD(data);
     closeAllQ();
   }
   const EditQD=()=>{
@@ -870,6 +901,8 @@ function Home() {
 }
 
   // = == = == ==  == == = = ==  == = = == = = =  = == = == = = == = = = = = = ==
+
+
   
   return (
     <>
@@ -1016,9 +1049,19 @@ function Home() {
           </div>
           <WebTable/>
           <div className='CreateLearnQ'>
-            <p>*Ensure That The Link Get From Embeded Code.</p>
+            <p>Create Web Test Module</p>
             <input type='text' placeholder='Title' className='creTiQ'></input>
-            <input type='text' placeholder='Link' className='creLiQ'></input>
+            <input type='text' placeholder='Author' className='creAuQ'></input>
+            <div className='gbg'>
+              <input type='number' placeholder='No.QA' className='CreNu'></input>
+              <button className='glow-button' onClick={genV}>Generate</button>
+            </div>
+            
+            
+            <div className='QA'>
+              {componentsArray}
+            </div>
+            
             <div className='ButStack'>
               <button onClick={CreateQD}>Create</button>
               <button onClick={closeAllQ}>Cancel</button>
