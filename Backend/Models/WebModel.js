@@ -3,11 +3,6 @@ const Schema = mongoose.Schema;
 
 const WebSchema = new Schema(
     {
-        Id:{
-            type:String,
-            require:true,
-            unique: true
-        },
         Title:{
             type:String,
             require:true

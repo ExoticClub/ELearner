@@ -96,7 +96,7 @@ function PracticeModule({ TId, logInfo }) {
     }
   };
   function SubmitHand(){
-    handlePostRequest({"RegNo":logInfo[0],"TestId":QData.Id,"MarkGet":mark});
+    handlePostRequest({"RegNo":logInfo[0],"TestId":QData._id,"MarkGet":mark});
     document.querySelector(".JJoy").style="display:none;";
     document.querySelector(".marktsb").style="display:flex;";
     document.querySelector("#op").style="display:flex;";

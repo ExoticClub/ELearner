@@ -539,7 +539,7 @@ function Home() {
   function bstf() {
     const Max = [];
     for (const qd of QD) {
-      const NowId = qd.Id;
+      const NowId = qd._id;
       const NowC = mark.filter((m) => m.TestId === NowId || m.TestId === 'None');
       
       if (NowC.length > 0) {
@@ -554,7 +554,7 @@ function Home() {
   function wstf() {
     const Max = [];
     for (const qd of QD) {
-      const NowId = qd.Id;
+      const NowId = qd._id;
       const NowC = mark.filter((m) => m.TestId === NowId || m.TestId === 'None');
       
       if (NowC.length > 0) {
@@ -1110,7 +1110,7 @@ function Home() {
           </div>
           <FormTable/>
           <div className='CreateLearnF'>
-            <p>*Ensure That The Link Get From Embeded Code.</p>
+            <p>Create A Hyper Card</p>
             <input type='text' placeholder='Title' className='creTiF'></input>
             <input type='text' placeholder='Link' className='creLiF'></input>
             <div className='ButStack'>
@@ -1165,7 +1165,7 @@ function Home() {
           <LogTable/>
 
           <div className='SearchLog'>
-            <p>*Ensure That The Link Get From Embeded Code.</p>
+            <p>*Ensure That He/She Login Already</p>
             <input type='text' placeholder='Title' className='SReg'></input>
             <div className='rsl'>
               <p className='VName'>Name : </p>

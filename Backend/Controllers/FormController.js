@@ -6,10 +6,10 @@ const FormModel = require("../Models/FormModel.js")
 //   CREATE
 
 const createForm = async(req,res)=>{
-    const{Title,Link,Id}=req.body
+    const{Title,Link}=req.body
 
     try{
-        const Form=await FormModel.create({Title,Link,Id})
+        const Form=await FormModel.create({Title,Link})
         res.status(200).json(Form)
     }catch(e){
         res.status(400).json({error:e.message})

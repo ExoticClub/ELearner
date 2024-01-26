@@ -10,11 +10,6 @@ const FormSchema = new Schema(
         Link:{
             type:String,
             require:true
-        },
-        Id:{
-            type:String,
-            require:true,
-            unique: true
         }
     },
     {timestamps:true}

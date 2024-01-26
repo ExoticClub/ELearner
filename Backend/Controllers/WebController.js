@@ -6,10 +6,10 @@ const WebModel = require("../Models/WebModel.js")
 //   CREATE
 
 const createWeb = async(req,res)=>{
-    const{Id,Title,Question,Options,Answer,Author}=req.body
+    const{Title,Question,Options,Answer,Author}=req.body
 
     try{
-        const Web=await WebModel.create({Id,Title,Question,Options,Answer,Author})
+        const Web=await WebModel.create({Title,Question,Options,Answer,Author})
         res.status(200).json(Web)
     }catch(e){
         res.status(400).json({error:e.message})
