@@ -8,6 +8,6 @@
     "Frontend":"React JS",
     "Backend":"Express JS",
     "Database":"Mongo DB",
-    "API_URL":"http://localhost:9999",
+    "API_URL":"http://192.168.86.24:9999",
     "Admins":["9536007"]
 }
