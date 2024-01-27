@@ -20,7 +20,7 @@ function Home() {
       <div className='landing'>
         <div className='Header'>
           <div className='ro'>
-            <p>ENGLISH</p>
+            <p>E Learner</p>
           </div>
           <div className='lo'>
             <Link to={'/Home'}>Home</Link>
@@ -33,7 +33,7 @@ function Home() {
         <div className='Body'>
           <div className='LL'>
             <p className='Head'>Language Isn't Barrier In Communication</p>
-            <p className='Para'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt, molestias magni nostrum exercitationem quia accusantium minus libero voluptate iure</p>
+            <p className='Para'>English is the language of our international communication in all areas, such as politics, science, media or art and it is often the language of entertainment as well as socialising. Having a good command of English helps us to have more opportunities in life, first of all, our career.</p>
             <div className='buttons'>
               <Link to={"/learn"} className='glow-button' id='home-buts'>Learn</Link>
               <Link to={"/practice"} className='glow-button'>Practice</Link>
@@ -44,9 +44,12 @@ function Home() {
           </div>
         </div>
         <div className='Foot'>
-          <p>This Website Was Created By <Link>Team Exotic</Link></p>
+          <p>This Website Was Created By <Link to={'/Info'}>Team Exotic</Link></p>
         </div>
 
+      </div>
+      <div className='iuot'>
+        <p>{logInfo[1]}</p>
       </div>
     </>
   )

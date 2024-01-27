@@ -3,10 +3,11 @@ import "../style/WebPractice.css"
 import { useState } from 'react';
 import React, { useEffect } from 'react';
 import "../style/PracticeModule.css";
-import { Link } from 'react-router-dom';
+import information from "../infomation.json";
 
 function PracticeModule({ TId, logInfo }) {
-  console.log(TId)
+
+  const URL=information.API_URL;
    // API Fetch
 
    if(logInfo[0]==="404"){
@@ -20,7 +21,7 @@ function PracticeModule({ TId, logInfo }) {
    const [questionIndex, setQuestionIndex] = useState(0);
  
    useEffect(() => {
-     const apiUrl = 'http://localhost:9999/api/web';
+     const apiUrl = URL+'/api/web';
    
      fetch(apiUrl)
        .then(response => {
@@ -39,9 +40,6 @@ function PracticeModule({ TId, logInfo }) {
        });
    }, []);
  
-   console.log(WebData);
-
-   console.log(QData);
 
    // API POST
    const [mark, setMark] = useState(0);
@@ -50,7 +48,7 @@ function PracticeModule({ TId, logInfo }) {
     
     try {
       
-      const response = await fetch('http://localhost:9999/api/marks', {
+      const response = await fetch(URL+'/api/marks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -75,7 +73,6 @@ function PracticeModule({ TId, logInfo }) {
  
   const [selectedOption, setSelectedOption] = useState('');
   
-  console.log(questionIndex);
 
   const handleOptionChange = (e) => {
     e.target.style.color = 'red';

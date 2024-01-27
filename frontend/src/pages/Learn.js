@@ -2,11 +2,14 @@ import '../style/Learn.css';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { useGlobal } from '../components/GlobalContext';
+import information from "../infomation.json";
 
 function Video() {
 
+  const URL=information.API_URL;
+
   let logInfo;
-  const { globalVariable, setGlobalVariable } = useGlobal();
+  const { globalVariable } = useGlobal();
    let io=globalVariable;
    logInfo=io.split("$");
 
@@ -20,7 +23,7 @@ function Video() {
   const [Learn, setLearn] = useState(ReqData);
 
   useEffect(() => {
-    const apiUrl = 'http://localhost:9999/api/learn';
+    const apiUrl = URL+'/api/learn';
   
     fetch(apiUrl)
       .then(response => {
@@ -37,7 +40,6 @@ function Video() {
       });
   }, []);
 
-  console.log(Learn);
 
 
 
@@ -59,7 +61,7 @@ function Video() {
       <div className='landing'>
         <div className='Header'>
           <div className='ro'>
-            <p>ENGLISH</p>
+            <p>{information.ProjectName}</p>
           </div>
           <div className='lo'>
             <Link to={'/Home'}>Home</Link>

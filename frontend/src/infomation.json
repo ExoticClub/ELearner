@@ -1,0 +1,13 @@
+{
+    "ProjectName":"E Learner",
+    "Version":"1.0",
+    "DevelopedBy":"Exotic (CSBS)",
+    "Developer":"Luffy",
+    "Technology":"MERN Stack",
+    "Server":"Node JS",
+    "Frontend":"React JS",
+    "Backend":"Express JS",
+    "Database":"Mongo DB",
+    "API_URL":"http://localhost:9999",
+    "Admins":["9536007"]
+}

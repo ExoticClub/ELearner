@@ -2,9 +2,11 @@ import '../style/Login.css';
 import React, { useState, useEffect } from 'react';
 import { useGlobal } from '../components/GlobalContext';
 import { useNavigate } from 'react-router-dom';
-import Admin from "../Admin.json"
+import information from "../infomation.json";
 
 const LoginPage = () => {
+
+  const URL=information.API_URL;
 
   // API Fetch
 
@@ -12,7 +14,7 @@ const LoginPage = () => {
   const [Log, setLog] = useState(ReqData);
 
   useEffect(() => {
-    const apiUrl = 'http://localhost:9999/api/log';
+    const apiUrl = URL+'/api/log';
   
     fetch(apiUrl)
       .then(response => {
@@ -29,7 +31,6 @@ const LoginPage = () => {
       });
   }, []);
 
-  console.log(Log);
 
   // API POST
 
@@ -37,7 +38,7 @@ const LoginPage = () => {
    
    try {
      
-     const response = await fetch('http://localhost:9999/api/log', {
+     const response = await fetch(URL+'/api/log', {
        method: 'POST',
        headers: {
          'Content-Type': 'application/json',
@@ -101,7 +102,6 @@ const LoginPage = () => {
 }else{
   document.querySelector(".Messager").style="display:flex;";
   document.querySelector(".Messager p").innerHTML="Invalid Register Number !<br><br>Click Anywhere To Continue...";
-  console.log(SReg.length)
 }
       }else{
         document.querySelector(".Messager").style="display:flex;";
@@ -120,11 +120,10 @@ const LoginPage = () => {
     for (let i = 0; i < Log.length; i++) {
       if (Log[i].RegNo === Reg) {
         if (Log[i].Password === Password) {
-          if (Admin.id.includes(Reg)) {
+          if (information.Admins.includes(Reg)) {
             setGlobalVariable(Log[i].RegNo + "$" + Log[i].Name);
             navigate("/Admin")
           }else{
-            console.log("Welcome");
             setGlobalVariable(Log[i].RegNo + "$" + Log[i].Name);
             navigate("/Home")
           }

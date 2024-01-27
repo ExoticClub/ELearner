@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactPlayer from 'react-player';
 import Eject from "../assets/AUI.mp4";
 
 function Ester(){

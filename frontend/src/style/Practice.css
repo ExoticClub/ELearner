@@ -29,8 +29,7 @@
     z-index: 0;
 }
 .loTest{
-    
-    width:500px;
+    width:100%;
     display: flex;
     justify-content: space-evenly;
 }
@@ -312,7 +311,7 @@ body{
 }
 .namer{
     position: fixed;
-    top:5px;
+    top:50px;
     right:25px;
 }
 
@@ -322,4 +321,13 @@ body{
 
 .no{
     display: none;
+}
+
+.HeaderTest{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.hb{
+  width: 100%;
 }

@@ -5,12 +5,15 @@ import PracticeModule from './PracticeModule';
 import { useGlobal } from '../components/GlobalContext';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
+import information from "../infomation.json";
 
 
 function WebPractice() {
 
+  const URL = information.API_URL;
+
   let logInfo;
-  const { globalVariable, setGlobalVariable } = useGlobal();
+  const { globalVariable } = useGlobal();
    let io=globalVariable;
    logInfo=io.split("$");
 
@@ -26,7 +29,7 @@ function WebPractice() {
   const [WebData, setWebData] = useState(ReqData);
 
   useEffect(() => {
-    const apiUrl = 'http://localhost:9999/api/web';
+    const apiUrl = URL+'/api/web';
   
     fetch(apiUrl)
       .then(response => {
@@ -43,15 +46,13 @@ function WebPractice() {
       });
   }, []);
 
-  console.log(WebData);
-
   // API Fetch
 
   let ReqDataM=[{"RegNo":"000","TestId":"000","MarkGet":0}];
   const [MarkData, setMarkData] = useState(ReqDataM);
 
   useEffect(() => {
-    const apiUrl = 'http://localhost:9999/api/marks';
+    const apiUrl = URL+'/api/marks';
   
     fetch(apiUrl)
       .then(response => {
@@ -68,19 +69,17 @@ function WebPractice() {
       });
   }, []);
 
-  console.log(MarkData);
 
 
   function rept(n){
     var reg=logInfo[0]
-    var id=n.Id;
+    var id=n._id;
     var rlt=true;
     for(var i=0;i<MarkData.length;i++){
       if(MarkData[i].RegNo==reg && MarkData[i].TestId==id){
         rlt=false;
       }
     }
-    console.log(id)
     return rlt
   }
 
@@ -100,7 +99,6 @@ function WebPractice() {
       ReactDOM.render(<PracticeModule TId={WebData.indexOf(x)} logInfo={logInfo} className='TTT'/>, container);
       document.querySelector(".bn").style="display:none;";
       document.querySelector(".MoreWeb2").style="display:none;";
-      console.log("ppo")
       document.querySelector(".testMod").style="display:flex;";
     }
     else{
@@ -111,9 +109,17 @@ function WebPractice() {
   }
     return (
     <>
-        <div className='HeaderWeb'>
-            <div className='loWeb'>
-               <a>Practice On Web Modules</a>
+        <div className='HeaderTest'>
+            <div className='Header hb'>
+               <div className='ro'>
+                  <p>E Learner</p>
+               </div>
+               <div className='lo'>
+                  <Link to={'/Home'}>Home</Link>
+                  <Link to={'/Learn'}>Learn</Link>
+                  <Link to={'/Practice'}>Practice</Link>
+                  <Link to={'/Info'}>Info</Link>
+               </div>
             </div>
          </div>
         <div className='tt bn'>
@@ -124,31 +130,43 @@ function WebPractice() {
                       <a onClick={()=>chgTest(LatestData[2])} className="ag-courses-item_link">
                         <div className="ag-courses-item_bg"></div>
 
-                        <div className="ag-courses-item_title">
+                        <div className="ag-courses-item_title opo jhy">
                           {LatestData[2].Title||"No Data Found !"}
                         </div>
 
-                        <div className="ag-courses-item_date-box">
+                        <div className="ag-courses-item_date-box lio jhy">
                           Start:
                           <span className="ag-courses-item_date">
                             {LatestData[2].updatedAt.split("T")[0]||"No Data Found !"}
                           </span>
                         </div>
+                        <div className="ag-courses-item_date-box jhy">
+                          Author:
+                          <span className="ag-courses-item_date">
+                            {LatestData[2].Author||"No Data Found !"}
+                          </span>
+                        </div>
                       </a>
                     </div>
 
-                    <div className="ag-courses_item">
+                    <div className="ag-courses_item ">
                       <a onClick={()=>chgTest(LatestData[1])} className="ag-courses-item_link">
                         <div className="ag-courses-item_bg"></div>
 
-                        <div className="ag-courses-item_title">
+                        <div className="ag-courses-item_title opo jhy">
                           {LatestData[1].Title||"No Data Found !"}
                         </div>
 
-                        <div className="ag-courses-item_date-box">
+                        <div className="ag-courses-item_date-box lio jhy">
                           Start:
                           <span className="ag-courses-item_date">
                           {LatestData[1].updatedAt.split("T")[0]||"No Data Found !"}
+                          </span>
+                        </div>
+                        <div className="ag-courses-item_date-box jhy">
+                          Author:
+                          <span className="ag-courses-item_date">
+                            {LatestData[1].Author||"No Data Found !"}
                           </span>
                         </div>
                       </a>
@@ -158,14 +176,20 @@ function WebPractice() {
                       <a onClick={()=>chgTest(LatestData[0])} className="ag-courses-item_link">
                         <div className="ag-courses-item_bg"></div>
 
-                        <div className="ag-courses-item_title">
+                        <div className="ag-courses-item_title opo jhy">
                           {LatestData[0].Title||"No Data Found !"}
                         </div>
 
-                        <div className="ag-courses-item_date-box">
+                        <div className="ag-courses-item_date-box lio jhy">
                           Start:
                           <span className="ag-courses-item_date">
                           {LatestData[0].updatedAt.split("T")[0]||"No Data Found !"}
+                          </span>
+                        </div>
+                        <div className="ag-courses-item_date-box jhy">
+                          Author:
+                          <span className="ag-courses-item_date">
+                            {LatestData[0].Author||"No Data Found !"}
                           </span>
                         </div>
                       </a>
@@ -181,18 +205,18 @@ function WebPractice() {
         <div className="containerMore">
           <ul className="responsive-table">
             <li className="table-header">
-              <div className="col col-1">ID</div>
-              <div className="col col-2">Title</div>
-              <div className="col col-3">Date</div>
-              <div className="col col-4">Author</div>
+              <div className="col col-1 trt" >Title</div>
+              <div className="col col-2 trt">Question</div>
+              <div className="col col-3 trt">Date</div>
+              <div className="col col-4 trt">Author</div>
             </li>
             {WebData.map((data) => (
-              <a onClick={()=>chgTest(data)}>
+              <a onClick={()=>chgTest(data)} className='bitu'>
               <li className="table-row">
-                <div className="col col-1" >{data.Id}</div>
-                <div className="col col-2" >{data.Title}</div>
-                <div className="col col-3" >{data.updatedAt.split("T")[0]}</div>
-                <div className="col col-4" >{data.Author}</div>
+                <div className="col col-1 trt" >{data.Title}</div>
+                <div className="col col-1 trt" >{data.Question.length}</div>
+                <div className="col col-3 trt" >{data.updatedAt.split("T")[0]}</div>
+                <div className="col col-4 trt" >{data.Author}</div>
               </li>
               </a>
             ))}

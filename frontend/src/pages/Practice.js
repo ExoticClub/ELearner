@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 
 function Practice() {
-   const { globalVariable ,setGlobalVariable} = useGlobal();
+   const { globalVariable } = useGlobal();
    let io=globalVariable;
    let ios=io.split("$");
 
@@ -28,8 +28,16 @@ function Practice() {
       <div className='TestHome'>
 
          <div className='HeaderTest'>
-            <div className='loTest'>
-               <a>Practice</a>
+            <div className='Header hb'>
+               <div className='ro'>
+                  <p>E Learner</p>
+               </div>
+               <div className='lo'>
+                  <Link to={'/Home'}>Home</Link>
+                  <Link to={'/Learn'}>Learn</Link>
+                  <Link to={'/Practice'}>Practice</Link>
+                  <Link to={'/Info'}>Info</Link>
+               </div>
             </div>
          </div>
         <div className="containerTest">

@@ -1,6 +1,7 @@
 import "../style/Home.css";
 import { Link } from 'react-router-dom';
 import LandingImg from "../assets/dev.png";
+import information from "../infomation.json";
 
 function Info(){
     return (
@@ -8,7 +9,7 @@ function Info(){
           <div className='landing'>
             <div className='Header'>
               <div className='ro'>
-                <p>ENGLISH</p>
+                <p>{information.ProjectName}</p>
               </div>
               <div className='lo'>
                 <Link to={'/Home'}>Home</Link>
@@ -20,15 +21,15 @@ function Info(){
     
             <div className='Body'>
             <div className='LL Nop'>
-                <p>Name Of The Project : EngLab</p>
-                <p>Version : 1.0</p>
-                <p>{"Developed By : Exotic (CSBS)"}</p>
-                <p>Developer : Luffy</p>
-                <p>Technology : MERN</p>
-                <p>Server : Node JS</p>
-                <p>Backend : Express JS</p>
-                <p>Frontend : React JS</p>
-                <p>Database : Mongo DB</p>
+                <p>Name Of The Project : {information.ProjectName}</p>
+                <p>Version : {information.Version}</p>
+                <p>{"Developed By : "+information.DevelopedBy}</p>
+                <p>Developer : {information.Developer}</p>
+                <p>Technology : {information.Technology}</p>
+                <p>Server : {information.Server}</p>
+                <p>Backend : {information.Backend}</p>
+                <p>Frontend : {information.Frontend}</p>
+                <p>Database : {information.Database}</p>
             </div>
               <div className='RR'>
                 <img src={LandingImg}/>

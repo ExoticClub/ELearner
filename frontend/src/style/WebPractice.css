@@ -250,18 +250,6 @@ h2 {
   .table-header div,.table-row div{
     font-family: 'Josefin Sans', sans-serif;
   }
-  .col-1 {
-    flex-basis: 10%;
-  }
-  .col-2 {
-    flex-basis: 40%;
-  }
-  .col-3 {
-    flex-basis: 25%;
-  }
-  .col-4 {
-    flex-basis: 25%;
-  }
   
   @media all and (max-width: 767px) {
     .table-header {
@@ -270,11 +258,7 @@ h2 {
     li {
       display: block;
     }
-    .col {
-      
-      flex-basis: 100%;
-      
-    }
+    
     .col {
       display: flex;
       padding: 10px 0;
@@ -282,7 +266,6 @@ h2 {
         color: #6C7A89;
         padding-right: 10px;
         content: attr(data-label);
-        flex-basis: 50%;
         text-align: right;
       }
     }
@@ -340,4 +323,25 @@ h2 {
 }
 .backer:hover{
   cursor: pointer;
+}
+
+.lio{
+  padding-bottom: 20px;
+}
+
+.opo{
+  padding-top: 20px;
+}
+
+.jhy{
+  padding-left: 20px;
+}
+
+.bitu{
+  cursor: pointer;
+}
+
+.trt{
+  width: 300px;
+  text-align: center;
 }
