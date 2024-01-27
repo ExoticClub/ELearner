@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Card1 from "../assets/landscape-1.png";
 import Card2 from "../assets/landscape-2.png";
 import { useGlobal } from '../components/GlobalContext';
@@ -45,7 +45,7 @@ function Practice() {
          <div className="card__containerTest">
             <Link to={'/practice/webpractice'}>
             <button className="card__article">
-               <img src={Card1} alt="image" className="card__img"/>
+               <img src={Card1} alt="card1" className="card__img"/>
 
                <div className="card__data">
                   <span className="card__description">Let Get Pratice On</span>
@@ -56,7 +56,7 @@ function Practice() {
 
             <Link to={'/practice/formpractice'}>
             <button className="card__article" >
-               <img src={Card2} alt="image" className="card__img"/>
+               <img src={Card2} alt="card2" className="card__img"/>
 
                <div className="card__data">
                   <span className="card__description">Let Get Pratice On</span>

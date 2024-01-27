@@ -29,7 +29,7 @@ const LoginPage = () => {
       .catch(error => {
         console.error('Error fetching data:', error);
       });
-  }, []);
+  }, [URL]);
 
 
   // API POST
@@ -81,6 +81,7 @@ const LoginPage = () => {
     }
 
     const responseData = await response.json();
+    console.log(responseData);
     // Handle the response data as needed
     return(true)
   } catch (error) {
@@ -164,7 +165,6 @@ const LoginPage = () => {
             navigate("/Home")
           }
           setGlobalVariable(Reg+"$"+lN[lR.indexOf(Reg)])
-          console.log(Reg+"$"+lN[lR.indexOf(Reg)])
         } else {
           document.querySelector(".Messager").style="display:flex;";
           document.querySelector(".Messager p").innerHTML="Password Incorrect!<br><br>If You Forget The Password Please Contact Faculties...<br>Click Anywhere To Continue...";

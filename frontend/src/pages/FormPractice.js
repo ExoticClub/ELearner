@@ -11,7 +11,7 @@ function FormPractice(){
   // API FETCH 
 
   let logInfo;
-  const { globalVariable, setGlobalVariable } = useGlobal();
+  const { globalVariable } = useGlobal();
    let io=globalVariable;
    logInfo=io.split("$");
 
@@ -37,7 +37,7 @@ function FormPractice(){
       .catch(error => {
         console.error('Error fetching data:', error);
       });
-  }, []);
+  }, [URL]);
 
 
   function opnMore(){

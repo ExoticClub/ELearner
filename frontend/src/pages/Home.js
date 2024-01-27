@@ -7,7 +7,7 @@ import { useGlobal } from '../components/GlobalContext';
 function Home() {
   
   let logInfo;
-  const { globalVariable, setGlobalVariable } = useGlobal();
+  const { globalVariable } = useGlobal();
    let io=globalVariable;
    logInfo=io.split("$");
 
@@ -40,7 +40,7 @@ function Home() {
             </div>
           </div>
           <div className='RR'>
-            <img src={LandingImg}/>
+            <img src={LandingImg} alt='Landing Page Illustation'/>
           </div>
         </div>
         <div className='Foot'>

@@ -38,7 +38,7 @@ function PracticeModule({ TId, logInfo }) {
        .catch(error => {
          console.error('Error fetching data:', error);
        });
-   }, []);
+   }, [URL,TId]);
  
 
    // API POST

@@ -38,7 +38,7 @@ function Video() {
       .catch(error => {
         console.error('Error fetching data:', error);
       });
-  }, []);
+  }, [URL]);
 
 
 
@@ -71,7 +71,7 @@ function Video() {
           </div>
         </div>
         <div className='Foot'>
-          <p>This Website Was Created By <a>Team Exotic</a></p>
+          <p>This Website Was Created By <Link to={"/info"}>Team Exotic</Link></p>
         </div>
       </div>
 
@@ -80,7 +80,8 @@ function Video() {
     <div className="main-video-container">
       <iframe className='VidPlay' id="VVd"
       allowFullScreen={true}
-    src={Learn[0].Link}>
+    src={Learn[0].Link}
+    title={Learn[0].Title}>
       </iframe>
       <h3 className="main-vid-title">{Learn[0].Title}</h3>
     </div>
@@ -88,9 +89,9 @@ function Video() {
     <div className="video-list-container">
 
     {Learn.map((data,id) => (
-              <a className="list active" id={"kk"+id} onClick={()=>HandleVideo(data.Title,data.Link,id)}>
+              <button className="list active iui" id={"kk"+id} onClick={()=>HandleVideo(data.Title,data.Link,id)}>
                 <h3 className="list-title" >{data.Title}</h3>
-              </a>
+              </button>
             ))}
 
     </div>

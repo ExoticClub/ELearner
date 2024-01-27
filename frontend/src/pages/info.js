@@ -32,7 +32,7 @@ function Info(){
                 <p>Database : {information.Database}</p>
             </div>
               <div className='RR'>
-                <img src={LandingImg}/>
+                <img src={LandingImg} alt="Development"/>
               </div>
               
             </div>
