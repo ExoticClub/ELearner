@@ -10,6 +10,7 @@ import LoginPage from "./pages/Login";
 import Admin from "./Admin/Admin";
 import NotFound from "./pages/NotFound";
 import Ester from "./pages/Ester";
+import Info from "./pages/info";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             </Route>
             <Route path="Admin" element={<Admin />} />
             <Route path="KillMe" element={<Ester />} />
+            <Route path="info" element={<Info />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
