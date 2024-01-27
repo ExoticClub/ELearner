@@ -61,6 +61,36 @@ const LoginPage = () => {
 
  // _________
 
+ // - - -- -- - - -- - - --  --AUTH - -- - - - - --  - --
+
+ const handleAuthRequest = async (IO) => {
+   
+  try {
+    
+    const response = await fetch(URL+'/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // Add any other headers if needed
+      },
+      body: JSON.stringify(IO),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const responseData = await response.json();
+    // Handle the response data as needed
+    return(true)
+  } catch (error) {
+    return(false)
+  }
+};
+
+
+
+
   const navigate = useNavigate();
 
   const { setGlobalVariable } = useGlobal();
@@ -78,7 +108,7 @@ const LoginPage = () => {
     const SName = document.getElementById('SName').value;
     const SPass = document.getElementById('SPass').value;
     const SPassCon = document.getElementById('SPassCon').value;
-
+    
     if (SPass === SPassCon) {
       if(SName!==""){
       if(SReg.length>4&&SReg.slice(0,4)==="9536"){
@@ -114,28 +144,37 @@ const LoginPage = () => {
     document.querySelector(".RFR").disabled=false;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
+    let lR=[]
+    for(let g of Log){
+      lR.push(g.RegNo);
+    }
+    let lN=[]
+    for(let k of Log){
+      lN.push(k.Name);
+    }
 
-    for (let i = 0; i < Log.length; i++) {
-      if (Log[i].RegNo === Reg) {
-        if (Log[i].Password === Password) {
+      if (lR.includes(Reg)) {
+        let dc=await handleAuthRequest({"RegNo":Reg,"Password":Password});
+        if (dc) {
           if (information.Admins.includes(Reg)) {
-            setGlobalVariable(Log[i].RegNo + "$" + Log[i].Name);
             navigate("/Admin")
           }else{
-            setGlobalVariable(Log[i].RegNo + "$" + Log[i].Name);
             navigate("/Home")
           }
+          setGlobalVariable(Reg+"$"+lN[lR.indexOf(Reg)])
+          console.log(Reg+"$"+lN[lR.indexOf(Reg)])
         } else {
           document.querySelector(".Messager").style="display:flex;";
           document.querySelector(".Messager p").innerHTML="Password Incorrect!<br><br>If You Forget The Password Please Contact Faculties...<br>Click Anywhere To Continue...";
         }
+      
       } else{
         document.querySelector(".Messager").style="display:flex;";
         document.querySelector(".Messager p").innerHTML="No Account Found, Please SignUp !<br><br>Click Anywhere To Continue...";
       }
-    }
+    
 
     setReg('');
     setPassword('');
