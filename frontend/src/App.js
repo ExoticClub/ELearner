@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import './App.css';
-import API from "./API";
 import Home from "./pages/Home";
 import Learn from "./pages/Learn";
 import Practice from "./pages/Practice";
@@ -9,6 +8,8 @@ import WebPractice from "./pages/WebPractice";
 import FormPractice from "./pages/FormPractice";
 import LoginPage from "./pages/Login";
 import Admin from "./Admin/Admin";
+import NotFound from "./pages/NotFound";
+import Ester from "./pages/Ester";
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
               <Route path="FormPractice" element={<FormPractice />} />
             </Route>
             <Route path="Admin" element={<Admin />} />
-            <Route path="*" element={<API />} />
+            <Route path="KillMe" element={<Ester />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>
