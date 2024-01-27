@@ -12,7 +12,7 @@ const AuthRoutes = require("./Routes/AuthRoutes.js");
 
 const cors = require('cors');
 
-const port=process.env.PORT;
+const port=process.env.PORT||1727;
 
 
 app.use((req,res,next)=>{
@@ -28,7 +28,7 @@ app.get("/",(req,res)=>{
 });
 
 
-mongoose.connect(process.env.DB_URI)
+mongoose.connect(process.env.DB_URI||"mongodb+srv://Luffy:ProjectAdmin@englishlabdata.9dlzkxn.mongodb.net/")
     .then(()=>{
         app.listen(port,()=>{
             console.log("DB Connected Successfully And Listening To Port "+port);
