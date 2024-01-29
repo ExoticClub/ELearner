@@ -33,7 +33,9 @@ function Home() {
         <div className='Body'>
           <div className='LL'>
             <p className='Head'>Language Isn't Barrier In Communication</p>
-            <p className='Para'>English is the language of our international communication in all areas, such as politics, science, media or art and it is often the language of entertainment as well as socialising. Having a good command of English helps us to have more opportunities in life, first of all, our career.</p>
+            <p className='Para'>
+    eLearner redefines English learning with personalized lessons, quizzes, and videos. Tailored to your proficiency, our platform fosters an engaging language-learning experience within a vibrant community. Master English at your own pace with eLearner, where education meets innovation.
+    </p>
             <div className='buttons'>
               <Link to={"/learn"} className='glow-button' id='home-buts'>Learn</Link>
               <Link to={"/practice"} className='glow-button'>Practice</Link>
