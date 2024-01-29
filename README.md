@@ -18,31 +18,6 @@ Here're some of the project's best features:
 *   Practice By Quiz
 *   Be Fluent In English
 
-<h2>⚙️ Installation Steps:</h2>
-
-<p>1. Clone The Project</p>
-
-```
-git clone https://github.com/ExoticClub/ELearner
-```
-
-<p>2. Change Directory</p>
-
-```
-cd ELearner
-```
-
-<p>3. Install Packages</p>
-
-```
-npm install
-```
-
-<p>4. Start The Project</p>
-
-```
-npm start
-```
   
 <h2>💻 Built with</h2>
 
