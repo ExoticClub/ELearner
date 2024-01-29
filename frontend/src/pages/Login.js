@@ -122,8 +122,8 @@ const LoginPage = () => {
         handlePostRequest({"Name":SName,"RegNo":SReg,"Department":SClass,"Password":SPass})
         document.getElementById('register').classList.add("active");
         document.getElementById('login').classList.remove("active");
-        // alert("Sign Up Sucessfully !")
-        window.location.href = '/';
+        alert("Sign Up Sucessfully !")
+        // window.location.href = '/';
       }
     }
   }else{

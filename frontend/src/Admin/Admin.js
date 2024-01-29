@@ -6,7 +6,7 @@ import LearnTable from "./LearnTable";
 import WebTable from "./WebTable";
 import FormTable from "./FormTable";
 import LogTable from "./LogTable";
-import Admin from "../Admin.json";
+import information from "../infomation.json";
 import { useGlobal } from '../components/GlobalContext';
 
 
@@ -21,7 +21,7 @@ function Home() {
     window.location.href = '/';
   }
 
-  if(!Admin.id.includes(logInfo[0])){
+  if(!information.Admins.includes(logInfo[0])){
     window.location.href = '/';
   }
 
