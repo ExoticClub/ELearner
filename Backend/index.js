@@ -29,7 +29,7 @@ app.get("/",(req,res)=>{
     res.send("Hello")
 });
 
-mongoose.connect(process.env.DB_URI||"mongodb+srv://Luffy:ProjectAdmin@englishlabdata.9dlzkxn.mongodb.net/")
+mongoose.connect(process.env.DB_URI)
     .then(()=>{
         app.listen(port,()=>{
             console.log("DB Connected Successfully And Listening To Port "+port);
