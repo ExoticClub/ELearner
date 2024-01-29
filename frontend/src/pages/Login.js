@@ -54,6 +54,7 @@ const LoginPage = () => {
      const responseData = await response.json();
      // Handle the response data as needed
      console.log('Response data:', responseData);
+     window.location.href = '/';
    } catch (error) {
      console.error('Error during POST request:', error);
    }
@@ -122,8 +123,6 @@ const LoginPage = () => {
         handlePostRequest({"Name":SName,"RegNo":SReg,"Department":SClass,"Password":SPass})
         document.getElementById('register').classList.add("active");
         document.getElementById('login').classList.remove("active");
-        alert("Sign Up Sucessfully !")
-        // window.location.href = '/';
       }
     }
   }else{
@@ -275,6 +274,7 @@ const LoginPage = () => {
       <button className='Messager' onClick={cls}>
         <p>None</p>
       </button>
+      
     </>
   );
 };
