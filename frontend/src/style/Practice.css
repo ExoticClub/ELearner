@@ -348,7 +348,7 @@ body{
   display: none;
   justify-content: center;
   align-items: center;
-  z-index: 10;
+  z-index: 10000;
   flex-direction: column;
 }
 

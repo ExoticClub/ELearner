@@ -3,8 +3,23 @@ import { Link } from 'react-router-dom';
 import LandingImg from "../assets/dev.png";
 import information from "../infomation.json";
 import ELearner from "../assets/ELearner.apk";
+import ReactLoading from "react-loading";
+import { useEffect } from 'react';
 
 function Info(){
+  useEffect(()=>{
+    document.querySelector(".loading").style="display:flex;";
+    const delayedFunction = () => {
+      // Your function logic goes here
+      document.querySelector(".loading").style="display:none;";
+    };
+
+    const timeoutId = setTimeout(delayedFunction, 2000);
+
+    // Cleanup the timeout to avoid memory leaks
+    return () => clearTimeout(timeoutId);
+ },[])
+
     return (
         <>
           <div className='landing'>
@@ -43,6 +58,12 @@ function Info(){
             </div>
     
           </div>
+
+          <div className='loading'>
+         <ReactLoading type="bubbles" color="#0000FF"
+                height={100} width={100} />
+                <p>Loading Please Wait...</p>
+        </div>
         </>
       )
 }

@@ -6,11 +6,27 @@ import "../style/Practice.css";
 import { Link } from 'react-router-dom';
 import study from "../assets/study.jpg";
 import ReactLoading from "react-loading";
+import { useEffect } from 'react';
 
 
 
 
 function Practice() {
+
+   useEffect(()=>{
+      document.querySelector(".loading").style="display:flex;";
+   })
+   useEffect(() => {
+      const delayedFunction = () => {
+        // Your function logic goes here
+        document.querySelector(".loading").style="display:none;";
+      };
+  
+      const timeoutId = setTimeout(delayedFunction, 2000);
+  
+      // Cleanup the timeout to avoid memory leaks
+      return () => clearTimeout(timeoutId);
+    }, []);
    
    const { globalVariable } = useGlobal();
    let io=globalVariable;

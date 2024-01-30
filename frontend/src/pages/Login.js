@@ -3,15 +3,27 @@ import React, { useState, useEffect } from 'react';
 import { useGlobal } from '../components/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import information from "../infomation.json";
+import ReactLoading from "react-loading";
 
 const LoginPage = () => {
 
   const URL=information.API_URL;
+  
 
   // API Fetch
 
   let ReqData=[{"Name":"None","RegNo":"404","Department":"CSBS","Password":"None"}];
   const [Log, setLog] = useState(ReqData);
+  
+  useEffect(()=>{
+    document.querySelector(".loading").style="display:none;";
+    if(Log[0].Name=="None"){
+      document.querySelector(".loading").style="display:flex;";
+    }
+    if(Log[0].Name!="None"){
+      document.querySelector(".loading").style="display:none;";
+    }
+  },[Log])
 
   useEffect(() => {
     const apiUrl = URL+'/api/log';
@@ -35,7 +47,7 @@ const LoginPage = () => {
   // API POST
 
   const handlePostRequest = async (IO) => {
-   
+    document.querySelector(".loading").style="display:flex;";
    try {
      
      const response = await fetch(URL+'/api/log', {
@@ -65,7 +77,7 @@ const LoginPage = () => {
  // - - -- -- - - -- - - --  --AUTH - -- - - - - --  - --
 
  const handleAuthRequest = async (IO) => {
-   
+  document.querySelector(".loading").style="display:flex;";
   try {
     
     const response = await fetch(URL+'/api/auth/login', {
@@ -84,6 +96,7 @@ const LoginPage = () => {
     const responseData = await response.json();
     console.log(responseData);
     // Handle the response data as needed
+    document.querySelector(".loading").style="display:none;";
     return(true)
   } catch (error) {
     return(false)
@@ -274,7 +287,11 @@ const LoginPage = () => {
       <button className='Messager' onClick={cls}>
         <p>None</p>
       </button>
-      
+      <div className='loading'>
+         <ReactLoading type="bubbles" color="#0000FF"
+                height={100} width={100} />
+                <p>Loading Please Wait...</p>
+      </div>
     </>
   );
 };

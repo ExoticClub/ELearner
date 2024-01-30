@@ -4,7 +4,8 @@ import "../style/Practice.css";
 import { Link } from 'react-router-dom';
 import { useGlobal } from '../components/GlobalContext';
 import information from "../infomation.json";
-import study from "../assets/study.jpg"
+import study from "../assets/study.jpg";
+import ReactLoading from "react-loading";
 
 
 function FormPractice(){
@@ -21,8 +22,16 @@ function FormPractice(){
     window.location.href = '/';
   }
 
-  const [FormData, setFormData] = useState([{"Title":"No Data Found","Link":"/404","Id":404,"updatedAt":"404T500"},{"Title":"No Data Found","Link":"/404","Id":404,"updatedAt":"404T500"},{"Title":"No Data Found","Link":"/404","Id":404,"updatedAt":"404T500"}]);
+  const [FormData, setFormData] = useState([{"Title":"No Data","Link":"/404","Id":404,"updatedAt":"404T500"},{"Title":"No Data Found","Link":"/404","Id":404,"updatedAt":"404T500"},{"Title":"No Data Found","Link":"/404","Id":404,"updatedAt":"404T500"}]);
 
+  useEffect(()=>{
+    if(FormData[0].Title=="No Data"){
+      document.querySelector(".loading").style="display:flex;";
+    }
+    if(FormData[0].Title!="No Data"){
+      document.querySelector(".loading").style="display:none;";
+    }
+  },[FormData])
   useEffect(() => {
     const apiUrl = URL+'/api/forms';
   
@@ -160,6 +169,11 @@ function FormPractice(){
             {Latest[1].Title||"Loading..."}
          </Link>
          <button className='btx6' onClick={opnMore}>More</button>
+      </div>
+      <div className='loading'>
+         <ReactLoading type="bubbles" color="#0000FF"
+                height={100} width={100} />
+                <p>Loading Please Wait...</p>
       </div>
     </>
   )

@@ -5,6 +5,8 @@ import "../style/Components.css";
 import { useGlobal } from '../components/GlobalContext';
 
 function Home() {
+
+  
   
   let logInfo;
   const { globalVariable } = useGlobal();
