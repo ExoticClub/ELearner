@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&display=swap');
+
+
+.Header{
+    background-color:lightgray;
+    display:flex;
+    justify-content: space-around;
+    height:45px;
+    align-items: center;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.lo{
+    
+    width:30%;
+    display: flex;
+    justify-content: space-evenly;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.lo a{
+    font-family: 'Josefin Sans', sans-serif;
+    color: black;
+    cursor: pointer;
+}
+.lo a:hover{
+    color:white;
+}
+.Header div p{
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.ro{
+    width:40%;
+    display: flex;
+}
+
+.Body{
+    display: flex;
+    justify-content: space-evenly;
+    align-items:center;
+}
+.Head{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+    font-size: 20pt;
+    width:300px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+.Para{
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: left;
+    width:500px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.buttons{
+    width:280px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Foot{
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Foot p{
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 10px;
+}
+.landing{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;
+}
+.RR img{
+    width: 400px;
+}
+#home-buts{
+    margin-left: 0px;
+}
+
+.NotFoundPage{
+    background-color: red;
+    width:100%;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.Esterb{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+}
+
+.Nop{
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.iuot{
+    position: fixed;
+    top: 60px;
+    right: 20px;
+}
+
+@media only screen and (max-width: 500px) {
+    .Body{
+        flex-direction: column-reverse;
+        width:100%;
+        overflow: hidden;
+    }
+    *{
+      font-size: 10pt;
+    }
+    .RR img{
+        width:250px;
+    }
+    .landing{
+        height: 100vh;
+        justify-content: start;
+    }
+    .RR{
+        display: flex;
+        justify-content: center;
+    }
+    .LL{
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .Foot{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right:0;
+    }
+    .LL .Head{
+        width:90%;
+        text-align: center;
+    }
+    .LL .Para{
+        width:90%;
+        text-align: center;
+        line-height: 20px;
+    }
+    .lo{
+        width:50%;
+        
+    }
+    .ro{
+        width:20%;
+    }
+    
+  }

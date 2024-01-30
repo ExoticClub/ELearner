@@ -1,0 +1,347 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&display=swap');
+
+
+.HeaderWeb{
+    background-color:lightgray;
+    display:flex;
+    justify-content: space-around;
+    height:45px;
+    align-items: center;
+    font-family: 'Josefin Sans', sans-serif;
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index: 0;
+}
+.loWeb{
+    
+    width:500px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.loWeb a{
+    text-decoration: none;
+    color:black;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.loWeb a:hover{
+    color:white;
+}
+.TestPage{
+    width: 100%;
+}
+.tttt,.tt,.WebT{
+    width:100%;
+}
+body{
+    overflow: hidden;
+}
+.tttt{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+
+.ag-format-container {
+    width: 1142px;
+    margin: 0 auto;
+  }
+  
+ 
+  .ag-courses_box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 50px 0;
+  }
+  .ag-courses_item {
+    -ms-flex-preferred-size: calc(33.33333% - 30px);
+    flex-basis: calc(33.33333% - 30px);
+  
+    margin: 0 15px 30px;
+  
+    overflow: hidden;
+  
+    border-radius: 28px;
+  }
+  .ag-courses-item_link {
+    display: block;
+    padding: 30px 20px;
+    background-color: #121212;
+    min-height:250px;
+    overflow: hidden;
+  
+    position: relative;
+  }
+  .ag-courses-item_link:hover,
+  .ag-courses-item_link:hover .ag-courses-item_date {
+    text-decoration: none;
+    color: #FFF;
+  }
+  .ag-courses-item_link:hover .ag-courses-item_bg {
+    -webkit-transform: scale(10);
+    -ms-transform: scale(10);
+    transform: scale(10);
+  }
+  .ag-courses-item_title {
+    min-height: 87px;
+    margin: 0 0 25px;
+  
+    overflow: hidden;
+  
+    font-weight: bold;
+    font-size: 20px;
+    color: #FFF;
+  
+    z-index: 2;
+    position: relative;
+  }
+  .ag-courses-item_date-box {
+    font-size: 18px;
+    color: #FFF;
+  
+    z-index: 2;
+    position: relative;
+  }
+  .ag-courses-item_date {
+    font-weight: bold;
+    color: #f9b234;
+  
+    -webkit-transition: color .5s ease;
+    -o-transition: color .5s ease;
+    transition: color .5s ease
+  }
+  .ag-courses-item_bg {
+    height: 128px;
+    width: 128px;
+    background-color: #f9b234;
+  
+    z-index: 1;
+    position: absolute;
+    top: -75px;
+    right: -75px;
+  
+    border-radius: 50%;
+  
+    -webkit-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+  }
+  .ag-courses_item:nth-child(2n) .ag-courses-item_bg {
+    background-color: #3ecd5e;
+  }
+  .ag-courses_item:nth-child(3n) .ag-courses-item_bg {
+    background-color: #e44002;
+  }
+  .ag-courses_item:nth-child(4n) .ag-courses-item_bg {
+    background-color: #952aff;
+  }
+  .ag-courses_item:nth-child(5n) .ag-courses-item_bg {
+    background-color: #cd3e94;
+  }
+  .ag-courses_item:nth-child(6n) .ag-courses-item_bg {
+    background-color: #4c49ea;
+  }
+  
+  
+  
+  @media only screen and (max-width: 979px) {
+    .ag-courses_item {
+      -ms-flex-preferred-size: calc(50% - 30px);
+      flex-basis: calc(50% - 30px);
+    }
+    .ag-courses-item_title {
+      font-size: 24px;
+    }
+  }
+  
+  @media only screen and (max-width: 767px) {
+    .ag-format-container {
+      width: 96%;
+    }
+  
+  }
+  @media only screen and (max-width: 639px) {
+    .ag-courses_item {
+      -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+    }
+    .ag-courses-item_title {
+      min-height: 72px;
+      line-height: 1;
+  
+      font-size: 24px;
+    }
+    .ag-courses-item_link {
+      padding: 22px 40px;
+    }
+    .ag-courses-item_date-box {
+      font-size: 16px;
+    }
+  }
+
+  .butWeb{
+    background-color: aquamarine;
+    width: 120px;
+    color:black;
+    font-family: 'Josefin Sans', sans-serif;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    transition:box-shadow 0.3s;
+    
+}
+.butWeb:hover{
+    box-shadow: 0 5px 15px aquamarine;
+    color:black;
+    border:none;
+}
+
+.containerMore {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+h2 {
+  font-size: 26px;
+  margin: 20px 0;
+  text-align: center;
+  small {
+    font-size: 0.5em;
+  }
+}
+
+.responsive-table {
+  a li {
+    border-radius: 3px;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+  }
+  .table-header {
+    background-color: #95A5A6;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-radius: 3px;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+  }
+  .table-row {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+    color: black;
+  }
+  .table-header div,.table-row div{
+    font-family: 'Josefin Sans', sans-serif;
+  }
+  
+  @media all and (max-width: 767px) {
+    .table-header {
+      display: none;
+    }
+    li {
+      display: block;
+    }
+    
+    .col {
+      display: flex;
+      padding: 10px 0;
+      &:before {
+        color: #6C7A89;
+        padding-right: 10px;
+        content: attr(data-label);
+        text-align: right;
+      }
+    }
+  }
+}
+
+.MoreWeb{
+  display: none;
+  width:100%;
+  overflow: auto;
+  padding-top: 40px;
+}
+.responsive-table{
+  width:100%;
+}
+.containerMore,.oppp,.pppo{
+  width:100%;
+}
+.test{
+  width:100%;
+}
+.containerMore{
+  overflow: auto;
+  height: 90vh;
+  padding-top: 20px;
+  background-color: #e9e9e9;
+}
+
+.no{
+  position: fixed;
+  top:30%;
+  left:35%;
+  color:black;
+  background-color: #c2c2c2;
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width:30%;
+  height:200px;
+  border-radius: 10px;
+}
+.backer{
+  background-color: rgb(250, 50, 50);
+  position: fixed;
+  top:10px;
+  left:15px;
+  font-size: 10pt;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: bold;
+  color: black;
+  display: none;
+}
+.backer:hover{
+  cursor: pointer;
+}
+
+.lio{
+  padding-bottom: 20px;
+}
+
+.opo{
+  padding-top: 20px;
+}
+
+.jhy{
+  padding-left: 20px;
+}
+
+.bitu{
+  cursor: pointer;
+}
+
+.trt{
+  width: 300px;
+  text-align: center;
+}
