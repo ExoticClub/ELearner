@@ -8,12 +8,13 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useState,useEffect } from 'react';
-import "./Admin.css"
+import "./Admin.css";
+import information from "../infomation.json";
 
 // API Fetch
 
 
-
+let Url=information.API_URL;
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -39,7 +40,7 @@ export default function CustomizedTables() {
 const [Learn, setLearn] = useState(ReqData);
 
 useEffect(() => {
-  const apiUrl = 'http://localhost:9999/api/forms';
+  const apiUrl = Url+'/api/forms';
 
   fetch(apiUrl)
     .then(response => {

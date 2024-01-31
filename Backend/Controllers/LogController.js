@@ -48,8 +48,15 @@ const getLog = async(req,res)=>{
 
 const updateLog = async(req,res)=>{
     const {id}=req.params;
+    
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({error:"Log Not Found"})
+    }
+    
+    if(req.body.Password){
+        const{Password}=req.body;
+        const hashedPassword = await bcrypt.hash(Password, 10);
+        req.body.Password=hashedPassword;
     }
     try{
         const Log=await LogModel.findByIdAndUpdate({

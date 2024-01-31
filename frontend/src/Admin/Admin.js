@@ -8,9 +8,12 @@ import FormTable from "./FormTable";
 import LogTable from "./LogTable";
 import information from "../infomation.json";
 import { useGlobal } from '../components/GlobalContext';
+import informations from "../infomation.json";
 
 
 function Home() {
+
+  const Url=informations.API_URL;
 
   let logInfo;
   const { globalVariable, setGlobalVariable } = useGlobal();
@@ -69,7 +72,7 @@ function Home() {
      const [QD, setQD] = useState(ReqDataQ);
    
      useEffect(() => {
-       const apiUrl = 'http://localhost:9999/api/web';
+       const apiUrl = Url+'/api/web';
      
        fetch(apiUrl)
          .then(response => {
@@ -94,7 +97,7 @@ function Home() {
    
       try {
         
-        const response = await fetch('http://localhost:9999/api/web', {
+        const response = await fetch(Url+'/api/web', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -124,7 +127,7 @@ function Home() {
    
       try {
         
-        const response = await fetch('http://localhost:9999/api/web/'+id, {
+        const response = await fetch(Url+'/api/web/'+id, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
@@ -153,7 +156,7 @@ function Home() {
    
       try {
         
-        const response = await fetch('http://localhost:9999/api/web/'+id, {
+        const response = await fetch(Url+'/api/web/'+id, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
@@ -185,7 +188,7 @@ function Home() {
     const [Log, setLog] = useState(ReqDataL);
   
     useEffect(() => {
-      const apiUrl = 'http://localhost:9999/api/log';
+      const apiUrl = Url+'/api/log';
     
       fetch(apiUrl)
         .then(response => {
@@ -210,7 +213,7 @@ function Home() {
    
     try {
       
-      const response = await fetch('http://localhost:9999/api/log', {
+      const response = await fetch(Url+'/api/log', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -240,7 +243,7 @@ function Home() {
  
     try {
       
-      const response = await fetch('http://localhost:9999/api/log/'+id, {
+      const response = await fetch(Url+'/api/log/'+id, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -269,7 +272,7 @@ function Home() {
  
     try {
       
-      const response = await fetch('http://localhost:9999/api/log/'+id, {
+      const response = await fetch(Url+'/api/log/'+id, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -298,7 +301,7 @@ function Home() {
      const [form, setform] = useState(ReqDataF);
    
      useEffect(() => {
-       const apiUrl = 'http://localhost:9999/api/forms';
+       const apiUrl = Url+'/api/forms';
      
        fetch(apiUrl)
          .then(response => {
@@ -323,7 +326,7 @@ function Home() {
    
       try {
         
-        const response = await fetch('http://localhost:9999/api/forms', {
+        const response = await fetch(Url+'/api/forms', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -353,7 +356,7 @@ function Home() {
    
       try {
         
-        const response = await fetch('http://localhost:9999/api/forms/'+id, {
+        const response = await fetch(Url+'/api/forms/'+id, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
@@ -382,7 +385,7 @@ function Home() {
    
       try {
         
-        const response = await fetch('http://localhost:9999/api/forms/'+id, {
+        const response = await fetch(Url+'/api/forms/'+id, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
@@ -411,7 +414,7 @@ function Home() {
    const [mark, setmark] = useState(ReqData);
  
    useEffect(() => {
-     const apiUrl = 'http://localhost:9999/api/marks';
+     const apiUrl = Url+'/api/marks';
    
      fetch(apiUrl)
        .then(response => {
@@ -438,7 +441,7 @@ function Home() {
   const [learn, setlearn] = useState(ReqDataLe);
 
   useEffect(() => {
-    const apiUrl = 'http://localhost:9999/api/learn';
+    const apiUrl = Url+'/api/learn';
   
     fetch(apiUrl)
       .then(response => {
@@ -463,7 +466,7 @@ function Home() {
    
       try {
         
-        const response = await fetch('http://localhost:9999/api/learn', {
+        const response = await fetch(Url+'/api/learn', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -492,7 +495,7 @@ function Home() {
    
       try {
         
-        const response = await fetch('http://localhost:9999/api/learn/'+id, {
+        const response = await fetch(Url+'/api/learn/'+id, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
@@ -521,7 +524,7 @@ function Home() {
    
       try {
         
-        const response = await fetch('http://localhost:9999/api/learn/'+id, {
+        const response = await fetch(Url+'/api/learn/'+id, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
@@ -549,7 +552,7 @@ function Home() {
 
   let bst=[{"Regno":"404","Mark":0,"TestId":"You"}];
   let wst=[{"Regno":"404","Mark":0,"TestId":"You"}];
-  let chartData=[100,100,100,100,100,100,100,100];
+  
 
   function bstf() {
     const Max = [];
@@ -593,40 +596,56 @@ function Home() {
     wst = Max;
   }
 
-  function cdf(){
-    const Cd=[];
-    let CD=[];
-    let dep=["CSBS","CSE","ECE","EEE","AIDS","IT","CIVIL","MECH"]
-    for(const d of dep){
-      let nowT=0;
-      for(const m of mark){
-        let nowR=m.RegNo;
-        for(const l of Log){
-          if(nowR===l.RegNo){
-            if(d===l.Department){
-              nowT=nowT+m.MarkGet
-            }
+  
+    let chartData=[100,100,100,100,100,100,100,100];
+    function cdf(){
+      const dep=["CSBS","CSE","ECE","EEE","AIDS","IT","CIVIL","MECH"]
+      let cvc=[];
+      let Final=[];
+      for(let d of dep){
+        let Cr7;
+        let tol=0;
+        let tolM=0;
+        let pet=0;
+        for(let l of Log){
+          if(d==l.Department){
+            Cr7=l.RegNo.slice(0,-3)
+            tol=tol+1;
           }
         }
+        
+        for(let m of mark){
+          if(m.RegNo.slice(0,-3)==Cr7){
+            tolM=tolM+m.MarkGet
+          }
+        }
+        console.log(d,"=",tol)
+        console.log(d,"=",tolM)
+        if(tol!=0){
+          pet=tolM/tol;
+        }else{
+          pet=0;
+        }
+        cvc.push(pet);
       }
-      Cd.push(nowT)
-    }
-    console.log(Cd);
-    let Max=Cd[0];
-    for(const c of Cd){
-      if(c>Max){
-        Max=c
+      let Max=cvc[0]
+      for(let c of cvc){
+        if(Max<c){
+          Max=c
+        }
       }
+      for(let c of cvc){
+        Final.push((c/Max)*100);
+      }
+      
+      chartData=Final
     }
-    for(const e of Cd){
-      CD.push((e/Max)*100)
-    }
-    chartData=CD;
-  }
+    cdf();
+  
+  
 
   bstf();
   wstf();
-  cdf();
 
   const opnANA=()=>{
     document.querySelector(".ANALYSIS").style="display:flex;";
@@ -881,7 +900,6 @@ function Home() {
         document.querySelector(".ELP2Lo").style="display:flex;";
         document.querySelector(".ELP1Lo").style="display:none;";
         document.querySelector("#EReg").value=le.RegNo;
-        document.querySelector("#EPass").value=le.Password;
         document.querySelector("#EDep").value=le.Department;
         document.querySelector("#EName").value=le.Name;
       }
@@ -1192,7 +1210,7 @@ function Home() {
 
           <div className='SearchLog'>
             <p>*Ensure That He/She Login Already</p>
-            <input type='text' placeholder='Title' className='SReg'></input>
+            <input type='text' placeholder='RegNo' className='SReg'></input>
             <div className='rsl'>
               <p className='VName'>Name : </p>
               <p className='VDep'>Department : </p>
@@ -1218,7 +1236,7 @@ function Home() {
               <input type='text' id="EReg"></input>
               <input type='text' id="EName"></input>
               <input type='text' id="EDep"></input>
-              <input type='text' id="EPass"></input>
+              <input type='text' id="EPass" placeholder='New Password, If You Want To Change !'></input>
               <div className='ButStack'>
                 <button onClick={EditLog}>Edit</button>
                 <button onClick={closeAllLog}>Cancel</button>
