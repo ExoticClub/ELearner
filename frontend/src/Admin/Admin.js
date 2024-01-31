@@ -932,7 +932,7 @@ function Home() {
   
   return (
     <>
-      <div className='landing'>
+      <div className='landing oh'>
         <div className='Header'>
           <div className='ro'>
             <p>ADMIN</p>
@@ -1245,6 +1245,9 @@ function Home() {
           <p>This Website Was Created By <Link>Team Exotic</Link></p>
         </div>
 
+      </div>
+      <div className='notAdmin'>
+        <p>Admin Pannel Is Not Available For Mobile Environment...</p>
       </div>
     </>
   )

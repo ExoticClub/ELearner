@@ -253,3 +253,28 @@
     margin-right: 10px;
   }
   
+  .notAdmin{
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left:0;
+    bottom: 0;
+    right:0;
+    background-color: #d3d2d2;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    
+    
+  }
+
+  @media only screen and (max-width: 900px) {
+    .oh{
+      display:none;
+    }
+    .notAdmin{
+      display: flex;
+      overflow: hidden;
+      text-align: center;
+    }
+  }
