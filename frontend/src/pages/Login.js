@@ -99,6 +99,7 @@ const LoginPage = () => {
     document.querySelector(".loading").style="display:none;";
     return(true)
   } catch (error) {
+    document.querySelector(".loading").style="display:none;";
     return(false)
   }
 };
