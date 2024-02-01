@@ -84,7 +84,7 @@ const LoginPage = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // Add any other headers if needed
+        
       },
       body: JSON.stringify(IO),
     });
