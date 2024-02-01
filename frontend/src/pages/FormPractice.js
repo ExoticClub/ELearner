@@ -2,10 +2,10 @@ import React, { useState,useEffect } from 'react';
 import "../style/WebPractice.css";
 import "../style/Practice.css";
 import { Link } from 'react-router-dom';
-import { useGlobal } from '../components/GlobalContext';
 import information from "../infomation.json";
 import study from "../assets/study.jpg";
 import ReactLoading from "react-loading";
+import Cookies from 'js-cookie';
 
 
 function FormPractice(){
@@ -14,8 +14,7 @@ function FormPractice(){
   // API FETCH 
 
   let logInfo;
-  const { globalVariable } = useGlobal();
-   let io=globalVariable;
+   let io=Cookies.get("Log");
    logInfo=io.split("$");
 
   if(logInfo[0]==="404"){

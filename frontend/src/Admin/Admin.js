@@ -7,8 +7,8 @@ import WebTable from "./WebTable";
 import FormTable from "./FormTable";
 import LogTable from "./LogTable";
 import information from "../infomation.json";
-import { useGlobal } from '../components/GlobalContext';
 import informations from "../infomation.json";
+import Cookies from 'js-cookie';
 
 
 function Home() {
@@ -16,8 +16,7 @@ function Home() {
   const Url=informations.API_URL;
 
   let logInfo;
-  const { globalVariable, setGlobalVariable } = useGlobal();
-   let io=globalVariable;
+   let io=Cookies.get("Log");
    logInfo=io.split("$");
 
   if(logInfo[0]==="404"){

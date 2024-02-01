@@ -2,15 +2,14 @@ import { Link } from 'react-router-dom';
 import LandingImg from "../assets/Landing.png";
 import "../style/Home.css";
 import "../style/Components.css";
-import { useGlobal } from '../components/GlobalContext';
+import Cookies from 'js-cookie';
 
 function Home() {
 
   
   
   let logInfo;
-  const { globalVariable } = useGlobal();
-   let io=globalVariable;
+   let io=Cookies.get("Log");
    logInfo=io.split("$");
 
   if(logInfo[0]==="404"){

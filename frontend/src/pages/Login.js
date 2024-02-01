@@ -1,9 +1,9 @@
 import '../style/Login.css';
 import React, { useState, useEffect } from 'react';
-import { useGlobal } from '../components/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import information from "../infomation.json";
 import ReactLoading from "react-loading";
+import Cookies from 'js-cookie';
 
 const LoginPage = () => {
 
@@ -109,7 +109,6 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
 
-  const { setGlobalVariable } = useGlobal();
   const [SClass, setSClass] = useState("None");
   const [Reg, setReg] = useState('');
   const [Password, setPassword] = useState('');
@@ -177,7 +176,7 @@ const LoginPage = () => {
           }else{
             navigate("/Home")
           }
-          setGlobalVariable(Reg+"$"+lN[lR.indexOf(Reg)])
+          Cookies.set("Log",Reg+"$"+lN[lR.indexOf(Reg)]);
         } else {
           document.querySelector(".Messager").style="display:flex;";
           document.querySelector(".Messager p").innerHTML="Password Incorrect!<br><br>If You Forget The Password Please Contact Faculties...<br>Click Anywhere To Continue...";

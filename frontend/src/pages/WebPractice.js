@@ -2,12 +2,12 @@ import '../style/Practice.css';
 import "../style/WebPractice.css";
 import React, { useState,useEffect } from 'react';
 import PracticeModule from './PracticeModule';
-import { useGlobal } from '../components/GlobalContext';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import information from "../infomation.json";
 import study from "../assets/study.jpg";
 import ReactLoading from "react-loading";
+import Cookies from 'js-cookie';
 
 
 function WebPractice() {
@@ -15,8 +15,7 @@ function WebPractice() {
   const URL = information.API_URL;
 
   let logInfo;
-  const { globalVariable } = useGlobal();
-   let io=globalVariable;
+   let io=Cookies.get("Log");
    logInfo=io.split("$");
 
   if(logInfo[0]==="404"){

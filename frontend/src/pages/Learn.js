@@ -1,17 +1,16 @@
 import '../style/Learn.css';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import { useGlobal } from '../components/GlobalContext';
 import information from "../infomation.json";
 import ReactLoading from "react-loading";
+import Cookies from 'js-cookie';
 
 function Video() {
 
   const URL=information.API_URL;
 
   let logInfo;
-  const { globalVariable } = useGlobal();
-   let io=globalVariable;
+   let io=Cookies.get("Log");
    logInfo=io.split("$");
 
   if(logInfo[0]==="404"){

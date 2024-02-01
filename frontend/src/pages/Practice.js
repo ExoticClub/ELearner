@@ -1,12 +1,12 @@
 import React from 'react';
 import Card1 from "../assets/landscape-1.png";
 import Card2 from "../assets/landscape-2.png";
-import { useGlobal } from '../components/GlobalContext';
 import "../style/Practice.css";
 import { Link } from 'react-router-dom';
 import study from "../assets/study.jpg";
 import ReactLoading from "react-loading";
 import { useEffect } from 'react';
+import Cookies from 'js-cookie';
 
 
 
@@ -28,12 +28,11 @@ function Practice() {
       return () => clearTimeout(timeoutId);
     }, []);
    
-   const { globalVariable } = useGlobal();
-   let io=globalVariable;
+   let io=Cookies.get("Log");
    let ios=io.split("$");
 
    let logInfo;
-   let ioe=globalVariable;
+   let ioe=Cookies.get("Log");
    logInfo=ioe.split("$");
 
   if(logInfo[0]==="404"){
