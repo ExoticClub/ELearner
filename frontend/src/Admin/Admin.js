@@ -17,6 +17,9 @@ function Home() {
 
   let logInfo;
    let io=Cookies.get("Log");
+   if(!io){
+    window.location.href = '/';
+  }
    logInfo=io.split("$");
 
   if(logInfo[0]==="404"){
@@ -945,7 +948,10 @@ function Home() {
 
   // = == = == ==  == == = = ==  == = = == = = =  = == = == = = == = = = = = = ==
 
-
+  function LogOut(){
+    Cookies.set("Log","404$Login")
+    window.location.href = '/';
+  }
   
   return (
     <>
@@ -960,6 +966,7 @@ function Home() {
             <button onClick={opnWEBPRA}>Web Practice</button>
             <button onClick={opnFORMPRA}>Form Practice</button>
             <button onClick={opnSTU}>Student</button>
+            <button onClick={LogOut} className='LogoutBut' style={{backgroundColor:"lightgrey",color:"red",cursor:"pointer"}}>Logout</button>
           </div>
         </div>
 

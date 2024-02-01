@@ -15,6 +15,9 @@ function FormPractice(){
 
   let logInfo;
    let io=Cookies.get("Log");
+   if(!io){
+    window.location.href = '/';
+  }
    logInfo=io.split("$");
 
   if(logInfo[0]==="404"){

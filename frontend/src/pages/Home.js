@@ -6,13 +6,23 @@ import Cookies from 'js-cookie';
 
 function Home() {
 
-  
+
   
   let logInfo;
-   let io=Cookies.get("Log");
-   logInfo=io.split("$");
+  let io=Cookies.get("Log");
+
+  if(!io){
+    window.location.href = '/';
+  }
+
+  logInfo=io.split("$");
 
   if(logInfo[0]==="404"){
+    window.location.href = '/';
+  }
+
+  function LogOut(){
+    Cookies.set("Log","404$Login")
     window.location.href = '/';
   }
   
@@ -28,6 +38,7 @@ function Home() {
             <Link to={'/Learn'}>Learn</Link>
             <Link to={'/Practice'}>Practice</Link>
             <Link to={'/Info'}>Info</Link>
+            <button onClick={LogOut} className='LogoutBut' style={{backgroundColor:"lightgrey",color:"red",cursor:"pointer"}}>Logout</button>
           </div>
         </div>
 

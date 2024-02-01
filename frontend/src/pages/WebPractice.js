@@ -16,6 +16,9 @@ function WebPractice() {
 
   let logInfo;
    let io=Cookies.get("Log");
+   if(!io){
+    window.location.href = '/';
+  }
    logInfo=io.split("$");
 
   if(logInfo[0]==="404"){
@@ -124,6 +127,11 @@ function WebPractice() {
       document.querySelector(".no").style="display:flex;";
     }
   }
+
+  function LogOut(){
+    Cookies.set("Log","404$Login")
+    window.location.href = '/';
+  }
     return (
     <>
         <div className='HeaderTest'>
@@ -136,6 +144,7 @@ function WebPractice() {
                   <Link to={'/Learn'}>Learn</Link>
                   <Link to={'/Practice'}>Practice</Link>
                   <Link to={'/Info'}>Info</Link>
+                  <button onClick={LogOut} className='LogoutBut' style={{backgroundColor:"lightgrey",color:"red",cursor:"pointer"}}>Logout</button>
                </div>
             </div>
          </div>

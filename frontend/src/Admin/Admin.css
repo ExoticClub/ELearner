@@ -66,6 +66,10 @@
     overflow-wrap: break-word;
 }
 
+.ki{
+  width:500px;
+}
+
 .ki button{
     background-color: lightgrey;
     cursor: pointer;
