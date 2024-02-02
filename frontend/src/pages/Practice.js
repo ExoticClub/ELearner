@@ -87,7 +87,7 @@ function Practice() {
 
                <div className="card__data">
                   <span className="card__description">Let Get Pratice On</span>
-                  <h2 className="card__title">Google Forms</h2>
+                  <h2 className="card__title">External Links</h2>
                </div>
             </button>
             </Link>

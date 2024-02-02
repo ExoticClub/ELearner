@@ -46,8 +46,8 @@ function Home() {
           <div className='LL'>
             <p className='Head'>Language Isn't Barrier In Communication</p>
             <p className='Para'>
-    eLearner redefines English learning with personalized lessons, quizzes, and videos. Tailored to your proficiency, our platform fosters an engaging language-learning experience within a vibrant community. Master English at your own pace with eLearner, where education meets innovation.
-    </p>
+            Welcome to ELearner - your go-to destination for interactive English quizzes! Immerse yourself in engaging content, from grammar challenges to literary trivia. Join our community and elevate your English skills with fun and flexible learning
+            </p>
             <div className='buttons'>
               <Link to={"/learn"} className='glow-button' id='home-buts'>Learn</Link>
               <Link to={"/practice"} className='glow-button'>Practice</Link>
