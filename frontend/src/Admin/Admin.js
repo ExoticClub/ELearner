@@ -9,6 +9,7 @@ import LogTable from "./LogTable";
 import information from "../infomation.json";
 import informations from "../infomation.json";
 import Cookies from 'js-cookie';
+import ReactLoading from "react-loading";
 
 
 function Home() {
@@ -188,6 +189,16 @@ function Home() {
 
     let ReqDataL=[{"Name":"None","RegNo":"404","Department":"CSBS","Password":"None"}];
     const [Log, setLog] = useState(ReqDataL);
+  
+    useEffect(()=>{
+      document.querySelector(".loading").style="display:none;";
+      if(Log[0].Name=="None"){
+        document.querySelector(".loading").style="display:flex;";
+      }
+      if(Log[0].Name!="None"){
+        document.querySelector(".loading").style="display:none;";
+      }
+    },[Log])
   
     useEffect(() => {
       const apiUrl = Url+'/api/log';
@@ -1272,6 +1283,11 @@ function Home() {
       </div>
       <div className='notAdmin'>
         <p>Admin Pannel Is Not Available For Mobile Environment...</p>
+      </div>
+      <div className='loading'>
+         <ReactLoading type="bubbles" color="#0000FF"
+                height={100} width={100} />
+                <p>Loading Please Wait...</p>
       </div>
     </>
   )
