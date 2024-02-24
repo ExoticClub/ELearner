@@ -25,6 +25,16 @@ function Home() {
     Cookies.set("Log","404$Login")
     window.location.href = '/';
   }
+
+  function opnTE(){
+    document.querySelector(".TEb").style="display:flex;";
+    document.querySelector(".TEcls").style="display:flex;";
+  }
+
+  function clsTE(){
+    document.querySelector(".TEb").style="display:none;";
+    document.querySelector(".TEcls").style="display:none;";
+  }
   
   return (
     <>
@@ -58,12 +68,50 @@ function Home() {
           </div>
         </div>
         <div className='Foot'>
-          <p>This Website Was Created By <Link to={'/Info'}>Team Exotic</Link></p>
+          <p>Developed By <button className='TEbut' onClick={opnTE}>Team Exotic</button></p>
         </div>
 
       </div>
       <div className='iuot'>
         <p>{logInfo[1]}</p>
+      </div>
+      <div className='TEcls'>
+        <a onClick={clsTE}></a>
+      </div>
+      <div className='TEb'>
+        <div>
+          <div className='TEl'>
+            <p className='rit'>Ramco Institute Of Technology</p>
+            <p>Computer Science And Business Systems</p>
+            <p className='TEd'>Team Exotic</p>
+          </div>
+          <div className='TEm'>
+            <div className='TEm1'>
+              <div>
+                <p>Kishor T</p>
+                <p>CSBS</p>
+              </div>
+              <div>
+                <p>Arumugam B</p>
+                <p>CSBS</p>
+              </div>
+              <div>
+                <p>Gopikaran R</p>
+                <p>CSBS</p>
+              </div>
+            </div>
+            <div className='TEm2'>
+              <div>
+                <p>Rumana Nachiyar</p>
+                <p>CSBS</p>
+              </div>
+              <div>
+                <p>Sri Janani</p>
+                <p>CSBS</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   )

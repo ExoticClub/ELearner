@@ -10,6 +10,90 @@
     font-family: 'Josefin Sans', sans-serif;
 }
 
+.TEb{
+    display: none;
+    position: fixed;
+    top:20%;
+    left: 25%;
+    background-color: white;
+    width:50%;
+    height: 60%;
+    border: 2px solid black;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.TEbut{
+    color:blue;
+    font-size: 11pt;
+    background-color: lightgray;
+    cursor:pointer;
+}
+
+.TEl{
+    flex-direction: column;
+    display: flex;
+    padding-bottom:50px;
+    height:90px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.TEm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height:200px;
+}
+.TEd{
+    padding-top: 25px;
+    font-size: 14pt;
+}
+.rit{
+    padding-bottom: 10px;
+}
+.TEm1{
+    display: flex;
+    justify-content: space-between;
+    width:600px;
+}
+.TEm2{
+    display: flex;
+    justify-content: space-between;
+    width:400px;
+}
+.TEm1 div,.TEm2 div{
+    background-color: lightgrey;
+    width:180px;
+    justify-content: center;
+    align-items: center;
+    height:60px;
+    border-radius: 10px;
+    padding: 5px;
+}
+.TEm1 div p,.TEm2 div p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:25px;
+}
+
+.TEcls{
+    display:none;
+}
+.TEcls a{
+    
+    background-color:rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right:0;
+}
+
+
 .lo{
     
     width:30%;
